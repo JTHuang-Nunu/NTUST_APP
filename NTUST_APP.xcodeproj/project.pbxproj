@@ -17,6 +17,8 @@
 		D8CB13BD2A0D2E9E00BFB673 /* NTUST_APPUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB13BC2A0D2E9E00BFB673 /* NTUST_APPUITests.swift */; };
 		D8CB13BF2A0D2E9E00BFB673 /* NTUST_APPUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB13BE2A0D2E9E00BFB673 /* NTUST_APPUITestsLaunchTests.swift */; };
 		E78A810A2A271B9E005497F1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78A81092A271B9E005497F1 /* LoginView.swift */; };
+		E78A810C2A27230B005497F1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78A810B2A27230B005497F1 /* MainView.swift */; };
+		E7C443192A2737FC00E9040F /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C443182A2737FC00E9040F /* Card.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		D8CB13BC2A0D2E9E00BFB673 /* NTUST_APPUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTUST_APPUITests.swift; sourceTree = "<group>"; };
 		D8CB13BE2A0D2E9E00BFB673 /* NTUST_APPUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTUST_APPUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E78A81092A271B9E005497F1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		E78A810B2A27230B005497F1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		E7C443182A2737FC00E9040F /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				E78A81092A271B9E005497F1 /* LoginView.swift */,
+				E78A810B2A27230B005497F1 /* MainView.swift */,
+				E7C443182A2737FC00E9040F /* Card.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -275,6 +281,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8CB13A92A0D2E9E00BFB673 /* NTUST_APP.xcdatamodeld in Sources */,
+				E78A810C2A27230B005497F1 /* MainView.swift in Sources */,
+				E7C443192A2737FC00E9040F /* Card.swift in Sources */,
 				D8CB13A62A0D2E9E00BFB673 /* Persistence.swift in Sources */,
 				D8CB139F2A0D2E9B00BFB673 /* ContentView.swift in Sources */,
 				E78A810A2A271B9E005497F1 /* LoginView.swift in Sources */,
