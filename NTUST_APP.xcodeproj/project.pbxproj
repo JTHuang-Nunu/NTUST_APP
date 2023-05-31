@@ -98,6 +98,7 @@
 		D8CB139B2A0D2E9B00BFB673 /* NTUST_APP */ = {
 			isa = PBXGroup;
 			children = (
+				E78A81082A271B24005497F1 /* Views */,
 				D8CB139C2A0D2E9B00BFB673 /* NTUST_APPApp.swift */,
 				D8CB139E2A0D2E9B00BFB673 /* ContentView.swift */,
 				D8CB13A02A0D2E9E00BFB673 /* Assets.xcassets */,
@@ -131,6 +132,13 @@
 				D8CB13BE2A0D2E9E00BFB673 /* NTUST_APPUITestsLaunchTests.swift */,
 			);
 			path = NTUST_APPUITests;
+			sourceTree = "<group>";
+		};
+		E78A81082A271B24005497F1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
