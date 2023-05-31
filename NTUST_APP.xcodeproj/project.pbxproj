@@ -16,6 +16,7 @@
 		D8CB13B32A0D2E9E00BFB673 /* NTUST_APPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB13B22A0D2E9E00BFB673 /* NTUST_APPTests.swift */; };
 		D8CB13BD2A0D2E9E00BFB673 /* NTUST_APPUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB13BC2A0D2E9E00BFB673 /* NTUST_APPUITests.swift */; };
 		D8CB13BF2A0D2E9E00BFB673 /* NTUST_APPUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB13BE2A0D2E9E00BFB673 /* NTUST_APPUITestsLaunchTests.swift */; };
+		E78A810A2A271B9E005497F1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78A81092A271B9E005497F1 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		D8CB13B82A0D2E9E00BFB673 /* NTUST_APPUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NTUST_APPUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CB13BC2A0D2E9E00BFB673 /* NTUST_APPUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTUST_APPUITests.swift; sourceTree = "<group>"; };
 		D8CB13BE2A0D2E9E00BFB673 /* NTUST_APPUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTUST_APPUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E78A81092A271B9E005497F1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 		E78A81082A271B24005497F1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E78A81092A271B9E005497F1 /* LoginView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				D8CB13A92A0D2E9E00BFB673 /* NTUST_APP.xcdatamodeld in Sources */,
 				D8CB13A62A0D2E9E00BFB673 /* Persistence.swift in Sources */,
 				D8CB139F2A0D2E9B00BFB673 /* ContentView.swift in Sources */,
+				E78A810A2A271B9E005497F1 /* LoginView.swift in Sources */,
 				D8CB139D2A0D2E9B00BFB673 /* NTUST_APPApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
