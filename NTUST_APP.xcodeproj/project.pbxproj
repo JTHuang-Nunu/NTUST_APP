@@ -18,6 +18,7 @@
 		D8CB13BF2A0D2E9E00BFB673 /* NTUST_APPUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB13BE2A0D2E9E00BFB673 /* NTUST_APPUITestsLaunchTests.swift */; };
 		E712FBE42A27C0F8005282AE /* SchoolTimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E712FBE32A27C0F8005282AE /* SchoolTimeTable.swift */; };
 		E712FBE62A27C37F005282AE /* TimeTableUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E712FBE52A27C37F005282AE /* TimeTableUnit.swift */; };
+		E712FBEF2A28689C005282AE /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E712FBEE2A28689C005282AE /* LoginManager.swift */; };
 		E78A810A2A271B9E005497F1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78A81092A271B9E005497F1 /* LoginView.swift */; };
 		E78A810C2A27230B005497F1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78A810B2A27230B005497F1 /* MainView.swift */; };
 		E7C443192A2737FC00E9040F /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C443182A2737FC00E9040F /* Card.swift */; };
@@ -55,6 +56,7 @@
 		D8CB13BE2A0D2E9E00BFB673 /* NTUST_APPUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTUST_APPUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E712FBE32A27C0F8005282AE /* SchoolTimeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolTimeTable.swift; sourceTree = "<group>"; };
 		E712FBE52A27C37F005282AE /* TimeTableUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableUnit.swift; sourceTree = "<group>"; };
+		E712FBEE2A28689C005282AE /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		E78A81092A271B9E005497F1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E78A810B2A27230B005497F1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		E7C443182A2737FC00E9040F /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -153,13 +155,30 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
+		E712FBEC2A286811005282AE /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				E78A81092A271B9E005497F1 /* LoginView.swift */,
+				E712FBEE2A28689C005282AE /* LoginManager.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		E712FBED2A286836005282AE /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				E78A810B2A27230B005497F1 /* MainView.swift */,
+				E7C443182A2737FC00E9040F /* Card.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
 		E78A81082A271B24005497F1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E712FBED2A286836005282AE /* MainView */,
+				E712FBEC2A286811005282AE /* Login */,
 				E712FBE22A27C0AB005282AE /* Calendar */,
-				E78A81092A271B9E005497F1 /* LoginView.swift */,
-				E78A810B2A27230B005497F1 /* MainView.swift */,
-				E7C443182A2737FC00E9040F /* Card.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -299,6 +318,7 @@
 				E78A810C2A27230B005497F1 /* MainView.swift in Sources */,
 				E7C443192A2737FC00E9040F /* Card.swift in Sources */,
 				D8CB13A62A0D2E9E00BFB673 /* Persistence.swift in Sources */,
+				E712FBEF2A28689C005282AE /* LoginManager.swift in Sources */,
 				D8CB139F2A0D2E9B00BFB673 /* ContentView.swift in Sources */,
 				E78A810A2A271B9E005497F1 /* LoginView.swift in Sources */,
 				D8CB139D2A0D2E9B00BFB673 /* NTUST_APPApp.swift in Sources */,

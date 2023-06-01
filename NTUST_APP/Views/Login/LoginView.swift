@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct LoginView: View {
+    @State var Account: String = ""
+    @State var Password: String = ""
     var body: some View {
         VStack{
             Spacer()
@@ -35,12 +37,12 @@ struct LoginView: View {
     }
     var LoginField: some View{
         VStack{
-            TextField("學號", text: .constant(""))
+            TextField("學號", text: $Account)
                 .padding()
                 .background(Color(.secondarySystemBackground))
                 .cornerRadius(10)
                 .padding(.horizontal, 20)
-            SecureField("密碼", text: .constant(""))
+            SecureField("密碼", text: $Password)
                 .padding()
                 .background(Color(.secondarySystemBackground))
                 .cornerRadius(10)
@@ -48,7 +50,10 @@ struct LoginView: View {
         }
     }
     var LoginButton: some View{
-        Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+        Button{
+            LoginManager.shared.Login(Account: Account, Password: Password)
+        }
+        label: {
             Text("登入")
                 .font(.system(size: 20))
                 .bold()
@@ -57,7 +62,7 @@ struct LoginView: View {
                 .frame(width: 200, height: 50)
                 .background(Color(.systemBlue))
                 .cornerRadius(10)
-        })
+        }
     }
 }
 
