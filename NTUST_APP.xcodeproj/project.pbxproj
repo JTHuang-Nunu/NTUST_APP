@@ -24,6 +24,7 @@
 		E7C443192A2737FC00E9040F /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C443182A2737FC00E9040F /* Card.swift */; };
 		E7FE29052A2A598A0057A1A1 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FE29042A2A598A0057A1A1 /* NavigationBar.swift */; };
 		E7FE29072A2A63540057A1A1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FE29062A2A63540057A1A1 /* MainView.swift */; };
+		E7FE290A2A2A640D0057A1A1 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FE29092A2A640D0057A1A1 /* SettingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		E7C443182A2737FC00E9040F /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		E7FE29042A2A598A0057A1A1 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		E7FE29062A2A63540057A1A1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		E7FE29092A2A640D0057A1A1 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,8 +173,6 @@
 		E712FBED2A286836005282AE /* MainView */ = {
 			isa = PBXGroup;
 			children = (
-				E78A810B2A27230B005497F1 /* HomeView.swift */,
-				E7C443182A2737FC00E9040F /* Card.swift */,
 				E7FE29062A2A63540057A1A1 /* MainView.swift */,
 			);
 			path = MainView;
@@ -181,8 +181,10 @@
 		E78A81082A271B24005497F1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E7FE29032A2A59730057A1A1 /* Utils */,
+				E7FE290B2A2A642C0057A1A1 /* HomeView */,
 				E712FBED2A286836005282AE /* MainView */,
+				E7FE29082A2A64000057A1A1 /* Setting */,
+				E7FE29032A2A59730057A1A1 /* Utils */,
 				E712FBEC2A286811005282AE /* Login */,
 				E712FBE22A27C0AB005282AE /* Calendar */,
 			);
@@ -195,6 +197,23 @@
 				E7FE29042A2A598A0057A1A1 /* NavigationBar.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		E7FE29082A2A64000057A1A1 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				E7FE29092A2A640D0057A1A1 /* SettingView.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		E7FE290B2A2A642C0057A1A1 /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				E78A810B2A27230B005497F1 /* HomeView.swift */,
+				E7C443182A2737FC00E9040F /* Card.swift */,
+			);
+			path = HomeView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,6 +354,7 @@
 				D8CB13A62A0D2E9E00BFB673 /* Persistence.swift in Sources */,
 				E7FE29052A2A598A0057A1A1 /* NavigationBar.swift in Sources */,
 				E712FBEF2A28689C005282AE /* LoginManager.swift in Sources */,
+				E7FE290A2A2A640D0057A1A1 /* SettingView.swift in Sources */,
 				D8CB139F2A0D2E9B00BFB673 /* ContentView.swift in Sources */,
 				E78A810A2A271B9E005497F1 /* LoginView.swift in Sources */,
 				D8CB139D2A0D2E9B00BFB673 /* NTUST_APPApp.swift in Sources */,

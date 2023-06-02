@@ -14,7 +14,11 @@ struct MainView: View {
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
-
+            SettingView()
+                .tabItem {
+                    Label("Setting", systemImage: "gearshape")
+                }
+        
         }
     }
 }
