@@ -31,6 +31,7 @@ struct LoginView: View {
                 .padding(.bottom, 20)
             Text("台科生活")
                 .font(.system(size: 30))
+                .foregroundColor(Color(hue: 0.65, saturation: 0.132, brightness: 0.454))
                 .bold()
                 .padding(.bottom, 20)
         }
@@ -52,6 +53,7 @@ struct LoginView: View {
     var LoginButton: some View{
         Button{
             LoginManager.shared.Login(Account: Account, Password: Password)
+            print("login button pressed")
         }
         label: {
             Text("登入")
