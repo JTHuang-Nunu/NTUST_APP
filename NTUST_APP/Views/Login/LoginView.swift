@@ -53,6 +53,7 @@ struct LoginView: View {
     var LoginButton: some View{
         Button{
             LoginManager.shared.Login(Account: Account, Password: Password)
+            print("login button pressed")
         }
         label: {
             Text("登入")
