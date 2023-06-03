@@ -16,6 +16,8 @@
 		E712FBE42A27C0F8005282AE /* SchoolTimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E712FBE32A27C0F8005282AE /* SchoolTimeTable.swift */; };
 		E712FBE62A27C37F005282AE /* TimeTableUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E712FBE52A27C37F005282AE /* TimeTableUnit.swift */; };
 		E712FBEF2A28689C005282AE /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E712FBEE2A28689C005282AE /* LoginManager.swift */; };
+		E778647C2A2B5D4300280EBF /* MoodleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E778647B2A2B5D4300280EBF /* MoodleManager.swift */; };
+		E778647E2A2B5F4200280EBF /* NTUSTSystemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E778647D2A2B5F4200280EBF /* NTUSTSystemManager.swift */; };
 		E78A810A2A271B9E005497F1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78A81092A271B9E005497F1 /* LoginView.swift */; };
 		E78A810C2A27230B005497F1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78A810B2A27230B005497F1 /* MainView.swift */; };
 		E7C443192A2737FC00E9040F /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C443182A2737FC00E9040F /* Card.swift */; };
@@ -51,6 +53,8 @@
 		E712FBE32A27C0F8005282AE /* SchoolTimeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolTimeTable.swift; sourceTree = "<group>"; };
 		E712FBE52A27C37F005282AE /* TimeTableUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableUnit.swift; sourceTree = "<group>"; };
 		E712FBEE2A28689C005282AE /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		E778647B2A2B5D4300280EBF /* MoodleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodleManager.swift; sourceTree = "<group>"; };
+		E778647D2A2B5F4200280EBF /* NTUSTSystemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTUSTSystemManager.swift; sourceTree = "<group>"; };
 		E78A81092A271B9E005497F1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E78A810B2A27230B005497F1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		E7C443182A2737FC00E9040F /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -102,6 +106,7 @@
 		D8CB139B2A0D2E9B00BFB673 /* NTUST_APP */ = {
 			isa = PBXGroup;
 			children = (
+				E778647A2A2B5D2200280EBF /* Managers */,
 				E78A81082A271B24005497F1 /* Views */,
 				D8CB139C2A0D2E9B00BFB673 /* NTUST_APPApp.swift */,
 				D8CB139E2A0D2E9B00BFB673 /* ContentView.swift */,
@@ -146,6 +151,15 @@
 				E7C443182A2737FC00E9040F /* Card.swift */,
 			);
 			path = MainView;
+			sourceTree = "<group>";
+		};
+		E778647A2A2B5D2200280EBF /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				E778647B2A2B5D4300280EBF /* MoodleManager.swift */,
+				E778647D2A2B5F4200280EBF /* NTUSTSystemManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		E78A81082A271B24005497F1 /* Views */ = {
@@ -288,6 +302,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E778647C2A2B5D4300280EBF /* MoodleManager.swift in Sources */,
+				E778647E2A2B5F4200280EBF /* NTUSTSystemManager.swift in Sources */,
 				E712FBE62A27C37F005282AE /* TimeTableUnit.swift in Sources */,
 				D8CB13A92A0D2E9E00BFB673 /* NTUST_APP.xcdatamodeld in Sources */,
 				E78A810C2A27230B005497F1 /* MainView.swift in Sources */,
