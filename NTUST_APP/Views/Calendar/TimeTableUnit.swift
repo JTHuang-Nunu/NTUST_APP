@@ -9,19 +9,33 @@ import SwiftUI
 
 struct TimeTableUnit: View {
     var CourseName: String
+    var CoursePlace: String = ""
+    
     var BackFrameColor: Color
     
     var body: some View {
         
         ZStack{
-            RoundedRectangle(cornerRadius: 10)
-                .frame(width: 100, height: 100)
+            RoundedRectangle(cornerRadius: 5)
+                .stroke(Color.gray, lineWidth: 1)
                 .foregroundColor(BackFrameColor)
-            Text(CourseName)
-                .font(.title3)
-                .fontWeight(.bold)
-                .foregroundColor(.white)
+                .shadow(color: .gray, radius: 3, x: 0, y: 0)
+            
+            VStack{
+                Text(CourseName)
+                    .font(.body)
+                    .fontWeight(.bold)
+                    .padding(.top)
+                Spacer()
+                
+                Text(CoursePlace)
+                    .font(.caption2)
+                    .fontWeight(.thin)
+                    .padding(.bottom)
+            }
         }
+        .frame(width: 60, height: 80)
+    
     
     
     }
@@ -29,6 +43,6 @@ struct TimeTableUnit: View {
 
 struct TimeTableUnit_Previews: PreviewProvider {
     static var previews: some View {
-        TimeTableUnit(CourseName: "Database", BackFrameColor: .blue)
+        TimeTableUnit(CourseName: "資料庫", CoursePlace: "TR-313", BackFrameColor: .white)
     }
 }
