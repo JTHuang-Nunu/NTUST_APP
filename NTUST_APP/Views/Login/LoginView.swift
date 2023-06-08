@@ -7,11 +7,18 @@
 
 import SwiftUI
 
+enum AlertType: Identifiable {
+    case loginSuccess
+    case loginFailure
+    
+    var id: AlertType { self }
+}
+
 struct LoginView: View {
     @State private var account: String = ""
     @State private var password: String = ""
     @State private var isLoading = false
-    @State private var loginFailed = false
+    @State private var alertType: AlertType? = nil
     
     var body: some View {
         VStack {
@@ -39,6 +46,22 @@ struct LoginView: View {
                 }
             }
         )
+        .alert(item: $alertType) { alertType in
+            switch alertType {
+            case .loginSuccess:
+                return Alert(
+                    title: Text("登入成功"),
+                    message: Text("歡迎回來 \(account)"),
+                    dismissButton: .default(Text("確定"))
+                )
+            case .loginFailure:
+                return Alert(
+                    title: Text("登入失败"),
+                    message: Text(errorMessage()),
+                    dismissButton: .default(Text("確定"))
+                )
+            }
+        }
     }
     
     var IconTitle: some View {
@@ -75,14 +98,25 @@ struct LoginView: View {
     
     var LoginButton: some View {
         Button(action: {
+            print("Login Button Pressed")
+            if account.isEmpty || password.isEmpty
+            {
+                alertType = .loginFailure
+                return
+            }
+            
             isLoading = true
-            LoginManager.shared.Login(Account: "username", Password: "password") { success in
+            MoodleManager.shared.Login(Account: account, Password: password) { success in
                 if success {
                     // 登入成功
                     print("Login successful")
+                    alertType = .loginSuccess
+                    
+                    //TODO switch to the home screen
                 } else {
                     // 登入失敗
                     print("Login failed")
+                    alertType = .loginFailure
                 }
                 isLoading = false
             }
@@ -97,12 +131,17 @@ struct LoginView: View {
                 .cornerRadius(10)
         }
         .disabled(isLoading)
-        .alert(isPresented: $loginFailed) {
-            Alert(
-                title: Text("登入失败"),
-                message: Text("請檢查您的帳號和密碼。"),
-                dismissButton: .default(Text("確定"))
-            )
+    }
+    
+    func errorMessage() -> String {
+        if account.isEmpty && password.isEmpty {
+            return "帳號和密碼皆為空"
+        } else if account.isEmpty {
+            return "帳號為空"
+        } else if password.isEmpty {
+            return "密碼為空"
+        } else {
+            return "請檢查您的帳號和密碼。"
         }
     }
 }

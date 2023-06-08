@@ -8,14 +8,15 @@
 import Foundation
 
 class LoginManager{
-    struct info {
-        var userid = 0
-    }
-    
+    var userid: Int = 0
+        
     static let shared = LoginManager()
+
     
     func Login(Account: String, Password: String, completion: @escaping (Bool) -> Void) {
-        
+        print(Account)
+        print(Password)
+
         //登入網址
         let url = URL(string: "http://127.0.0.1:5000/api/check_moodle_login")!
         
@@ -44,6 +45,7 @@ class LoginManager{
         }
         
         // 建立網路請求的 task
+
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             //如果為空
             guard let data = data, error == nil else {
@@ -54,13 +56,19 @@ class LoginManager{
             //取得回應
             if let responseJSON = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                 if let result = responseJSON["result"] as? String {
-                    if result == "true" {
-                        completion(true) // 傳遞成功結果
-                        return
+                    if result == "successed" {  //登入成功
+                        print(result)
+                        if let userid = responseJSON["userid"] as? String {
+                            self.userid = Int(userid)!
+                            print(userid)
+                        }
+                        completion(true)
+                    }
+                    else {  //登入失敗
+                        completion(false)
                     }
                 }
             }
-            completion(false) // 傳遞預設的失敗結果
         }
         
         task.resume()
