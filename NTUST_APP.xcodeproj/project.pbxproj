@@ -17,6 +17,9 @@
 		E712FBE62A27C37F005282AE /* TimeTableUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E712FBE52A27C37F005282AE /* TimeTableUnit.swift */; };
 		E712FBEF2A28689C005282AE /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E712FBEE2A28689C005282AE /* LoginManager.swift */; };
 		E772E5612A3215ED004CCCA8 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E772E5602A3215ED004CCCA8 /* AccountView.swift */; };
+		E772E5642A321798004CCCA8 /* MoodleHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = E772E5632A321798004CCCA8 /* MoodleHome.swift */; };
+		E772E5662A321815004CCCA8 /* CourseCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E772E5652A321815004CCCA8 /* CourseCard.swift */; };
+		E772E5682A3224A6004CCCA8 /* CourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E772E5672A3224A6004CCCA8 /* CourseView.swift */; };
 		E778647C2A2B5D4300280EBF /* MoodleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E778647B2A2B5D4300280EBF /* MoodleManager.swift */; };
 		E778647E2A2B5F4200280EBF /* NTUSTSystemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E778647D2A2B5F4200280EBF /* NTUSTSystemManager.swift */; };
 		E78A810A2A271B9E005497F1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78A81092A271B9E005497F1 /* LoginView.swift */; };
@@ -58,6 +61,9 @@
 		E712FBE52A27C37F005282AE /* TimeTableUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableUnit.swift; sourceTree = "<group>"; };
 		E712FBEE2A28689C005282AE /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		E772E5602A3215ED004CCCA8 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		E772E5632A321798004CCCA8 /* MoodleHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodleHome.swift; sourceTree = "<group>"; };
+		E772E5652A321815004CCCA8 /* CourseCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCard.swift; sourceTree = "<group>"; };
+		E772E5672A3224A6004CCCA8 /* CourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseView.swift; sourceTree = "<group>"; };
 		E778647B2A2B5D4300280EBF /* MoodleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodleManager.swift; sourceTree = "<group>"; };
 		E778647D2A2B5F4200280EBF /* NTUSTSystemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTUSTSystemManager.swift; sourceTree = "<group>"; };
 		E78A81092A271B9E005497F1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -160,6 +166,16 @@
 			path = MainView;
 			sourceTree = "<group>";
 		};
+		E772E5622A321782004CCCA8 /* Moodle */ = {
+			isa = PBXGroup;
+			children = (
+				E772E5632A321798004CCCA8 /* MoodleHome.swift */,
+				E772E5652A321815004CCCA8 /* CourseCard.swift */,
+				E772E5672A3224A6004CCCA8 /* CourseView.swift */,
+			);
+			path = Moodle;
+			sourceTree = "<group>";
+		};
 		E778647A2A2B5D2200280EBF /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +188,7 @@
 		E78A81082A271B24005497F1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E772E5622A321782004CCCA8 /* Moodle */,
 				E7FE290B2A2A642C0057A1A1 /* HomeView */,
 				E712FBED2A286836005282AE /* MainView */,
 				E7FE29082A2A64000057A1A1 /* Setting */,
@@ -342,6 +359,7 @@
 				E778647E2A2B5F4200280EBF /* NTUSTSystemManager.swift in Sources */,
 				E712FBE62A27C37F005282AE /* TimeTableUnit.swift in Sources */,
 				E7FE29072A2A63540057A1A1 /* MainView.swift in Sources */,
+				E772E5662A321815004CCCA8 /* CourseCard.swift in Sources */,
 				E772E5612A3215ED004CCCA8 /* AccountView.swift in Sources */,
 				D8CB13A92A0D2E9E00BFB673 /* NTUST_APP.xcdatamodeld in Sources */,
 				E78A810C2A27230B005497F1 /* HomeView.swift in Sources */,
@@ -350,10 +368,12 @@
 				E7FE29052A2A598A0057A1A1 /* NavigationBar.swift in Sources */,
 				E712FBEF2A28689C005282AE /* LoginManager.swift in Sources */,
 				E7FE290A2A2A640D0057A1A1 /* SettingView.swift in Sources */,
+				E772E5682A3224A6004CCCA8 /* CourseView.swift in Sources */,
 				D8CB139F2A0D2E9B00BFB673 /* ContentView.swift in Sources */,
 				E78A810A2A271B9E005497F1 /* LoginView.swift in Sources */,
 				D8CB139D2A0D2E9B00BFB673 /* NTUST_APPApp.swift in Sources */,
 				E712FBE42A27C0F8005282AE /* SchoolTimeTable.swift in Sources */,
+				E772E5642A321798004CCCA8 /* MoodleHome.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
