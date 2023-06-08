@@ -9,7 +9,22 @@ import SwiftUI
 
 struct SettingView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack{
+            settingForm
+                .navigationBarTitle("Setting")
+        
+        }
+    }
+    var settingForm: some View{
+        Form{
+            // do switching language using picker
+            Section(header: Text("General")){
+                Picker(selection: .constant(0), label: Text("Language")){
+                    Text("English").tag(0)
+                    Text("Chinese").tag(1)
+                }
+            }
+        }
     }
 }
 

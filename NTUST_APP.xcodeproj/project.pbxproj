@@ -16,6 +16,7 @@
 		E712FBE42A27C0F8005282AE /* SchoolTimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E712FBE32A27C0F8005282AE /* SchoolTimeTable.swift */; };
 		E712FBE62A27C37F005282AE /* TimeTableUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E712FBE52A27C37F005282AE /* TimeTableUnit.swift */; };
 		E712FBEF2A28689C005282AE /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E712FBEE2A28689C005282AE /* LoginManager.swift */; };
+		E772E5612A3215ED004CCCA8 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E772E5602A3215ED004CCCA8 /* AccountView.swift */; };
 		E778647C2A2B5D4300280EBF /* MoodleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E778647B2A2B5D4300280EBF /* MoodleManager.swift */; };
 		E778647E2A2B5F4200280EBF /* NTUSTSystemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E778647D2A2B5F4200280EBF /* NTUSTSystemManager.swift */; };
 		E78A810A2A271B9E005497F1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78A81092A271B9E005497F1 /* LoginView.swift */; };
@@ -56,6 +57,7 @@
 		E712FBE32A27C0F8005282AE /* SchoolTimeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolTimeTable.swift; sourceTree = "<group>"; };
 		E712FBE52A27C37F005282AE /* TimeTableUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableUnit.swift; sourceTree = "<group>"; };
 		E712FBEE2A28689C005282AE /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
+		E772E5602A3215ED004CCCA8 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		E778647B2A2B5D4300280EBF /* MoodleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodleManager.swift; sourceTree = "<group>"; };
 		E778647D2A2B5F4200280EBF /* NTUSTSystemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTUSTSystemManager.swift; sourceTree = "<group>"; };
 		E78A81092A271B9E005497F1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				E7FE29092A2A640D0057A1A1 /* SettingView.swift */,
+				E772E5602A3215ED004CCCA8 /* AccountView.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				E778647E2A2B5F4200280EBF /* NTUSTSystemManager.swift in Sources */,
 				E712FBE62A27C37F005282AE /* TimeTableUnit.swift in Sources */,
 				E7FE29072A2A63540057A1A1 /* MainView.swift in Sources */,
+				E772E5612A3215ED004CCCA8 /* AccountView.swift in Sources */,
 				D8CB13A92A0D2E9E00BFB673 /* NTUST_APP.xcdatamodeld in Sources */,
 				E78A810C2A27230B005497F1 /* HomeView.swift in Sources */,
 				E7C443192A2737FC00E9040F /* Card.swift in Sources */,
