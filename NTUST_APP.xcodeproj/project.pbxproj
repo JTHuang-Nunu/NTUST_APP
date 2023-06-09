@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D8CB139D2A0D2E9B00BFB673 /* NTUST_APPApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB139C2A0D2E9B00BFB673 /* NTUST_APPApp.swift */; };
+		D8CB139D2A0D2E9B00BFB673 /* NTUST_APP.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB139C2A0D2E9B00BFB673 /* NTUST_APP.swift */; };
 		D8CB139F2A0D2E9B00BFB673 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB139E2A0D2E9B00BFB673 /* ContentView.swift */; };
 		D8CB13A12A0D2E9E00BFB673 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8CB13A02A0D2E9E00BFB673 /* Assets.xcassets */; };
 		D8CB13A42A0D2E9E00BFB673 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8CB13A32A0D2E9E00BFB673 /* Preview Assets.xcassets */; };
@@ -42,7 +42,7 @@
 
 /* Begin PBXFileReference section */
 		D8CB13992A0D2E9B00BFB673 /* NTUST_APP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NTUST_APP.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D8CB139C2A0D2E9B00BFB673 /* NTUST_APPApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTUST_APPApp.swift; sourceTree = "<group>"; };
+		D8CB139C2A0D2E9B00BFB673 /* NTUST_APP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTUST_APP.swift; sourceTree = "<group>"; };
 		D8CB139E2A0D2E9B00BFB673 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D8CB13A02A0D2E9E00BFB673 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D8CB13A32A0D2E9E00BFB673 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -108,7 +108,7 @@
 			children = (
 				E778647A2A2B5D2200280EBF /* Managers */,
 				E78A81082A271B24005497F1 /* Views */,
-				D8CB139C2A0D2E9B00BFB673 /* NTUST_APPApp.swift */,
+				D8CB139C2A0D2E9B00BFB673 /* NTUST_APP.swift */,
 				D8CB139E2A0D2E9B00BFB673 /* ContentView.swift */,
 				D8CB13A02A0D2E9E00BFB673 /* Assets.xcassets */,
 				D8CB13A52A0D2E9E00BFB673 /* Persistence.swift */,
@@ -312,7 +312,7 @@
 				E712FBEF2A28689C005282AE /* LoginManager.swift in Sources */,
 				D8CB139F2A0D2E9B00BFB673 /* ContentView.swift in Sources */,
 				E78A810A2A271B9E005497F1 /* LoginView.swift in Sources */,
-				D8CB139D2A0D2E9B00BFB673 /* NTUST_APPApp.swift in Sources */,
+				D8CB139D2A0D2E9B00BFB673 /* NTUST_APP.swift in Sources */,
 				E712FBE42A27C0F8005282AE /* SchoolTimeTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

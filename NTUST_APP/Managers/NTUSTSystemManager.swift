@@ -13,9 +13,6 @@ class NTUSTSystemManager{
     var login_status = false
     
     public func Login(Account: String, Password: String, completion: @escaping (Bool) -> Void) {
-        self.DebugPrint("Login", "username: \(Account)")
-        self.DebugPrint("Login", "password: \(Password)")
-        
         //登入網址
         let url = URL(string: "http://\(host_ip)/api/check_ntust_login")!
         
@@ -34,6 +31,8 @@ class NTUSTSystemManager{
             "password": Password
         ]
         
+        self.DebugPrint("Login", parameters.description)
+        
         //執行 request
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
@@ -44,7 +43,7 @@ class NTUSTSystemManager{
         }
         
         // 建立網路請求的 task
-        
+
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             //如果為空
             guard let data = data, error == nil else {
@@ -73,6 +72,7 @@ class NTUSTSystemManager{
                 completion(false)
             }
         }
+        
         task.resume()
     }
     

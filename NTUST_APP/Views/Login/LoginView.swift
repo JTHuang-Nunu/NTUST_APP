@@ -15,10 +15,16 @@ enum AlertType: Identifiable {
 }
 
 struct LoginView: View {
+    @Binding var isLoggedIn: Bool
+    
     @State private var account: String = ""
     @State private var password: String = ""
     @State private var isLoading = false
     @State private var alertType: AlertType? = nil
+    
+    init(isLoggedIn: Binding<Bool> = .constant(false)) {
+        self._isLoggedIn = isLoggedIn
+    }
     
     var body: some View {
         VStack {
@@ -62,6 +68,7 @@ struct LoginView: View {
                 )
             }
         }
+
     }
     
     var IconTitle: some View {
@@ -116,10 +123,9 @@ struct LoginView: View {
                     // 登入成功
                     print("Login successful")
                     alertType = .loginSuccess
+                    isLoggedIn = true
                     
                     //MoodleManager.shared.Test()
-                    //切換 view 到 MainView
-                    
                 } else {
                     // 登入失敗
                     print("Login failed")

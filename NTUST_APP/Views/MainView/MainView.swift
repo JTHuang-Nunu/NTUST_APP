@@ -38,16 +38,33 @@ struct MainView: View {
         ZStack{
             ScrollView{
                 LazyVGrid(columns: columns){
-                    Card(IconName: "house", Title: "Home")
-                    Card(IconName: "book", Title: "Course")
-                    Card(IconName: "calendar", Title: "Calendar")
-                    Card(IconName: "person.3", Title: "Club")
-                    Card(IconName: "person", Title: "Teacher")
-                    Card(IconName: "person.2", Title: "Student")
+                    Card(IconName: "house", Title: "Home"){
+                        handleCardTap("Home")
+                    }
+                    Card(IconName: "book", Title: "Course"){
+                        handleCardTap("Course")
+                    }
+                    Card(IconName: "calendar", Title: "Calendar"){
+                        handleCardTap("Calendar")
+                    }
+                    Card(IconName: "person.3", Title: "Club"){
+                        handleCardTap("Club")
+                    }
+                    Card(IconName: "person", Title: "Teacher"){
+                        handleCardTap("Teacher")
+                    }
+                    Card(IconName: "person.2", Title: "Student"){
+                        handleCardTap("Student")
+                    }
                 }
             }
         }
         
+    }
+    
+    //處理按鈕點擊
+    func handleCardTap(_ Title: String) {
+        print("Card tapped: \(Title)")
     }
 }
 
