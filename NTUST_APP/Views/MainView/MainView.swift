@@ -33,7 +33,7 @@ struct MainView: View {
         
         }
     }
-    let columns = Array(repeating: GridItem(.flexible()), count: 2)
+    let columns = Array(repeating: GridItem(.flexible()), count: 3)
     var CardGrid: some View{
         ZStack{
             ScrollView{
@@ -56,6 +56,9 @@ struct MainView: View {
                     Card(IconName: "person.2", Title: "Student"){
                         handleCardTap("Student")
                     }
+                    Card(IconName: "paperplane", Title: "Test"){
+                        handleCardTap("Test")
+                    }
                 }
             }
         }
@@ -63,8 +66,36 @@ struct MainView: View {
     }
     
     //處理按鈕點擊
-    func handleCardTap(_ Title: String) {
-        print("Card tapped: \(Title)")
+    func handleCardTap(_ title: String) {
+        print("Card tapped: \(title)")
+        switch title {
+        case "Home":
+            print("Handle Home action here")
+        case "Course":
+            print("Handle Course action here")
+        case "Calendar":
+            print("Handle Calendar action here")
+        case "Club":
+            print("Handle Club action here")
+        case "Teacher":
+            print("Handle Teacher action here")
+        case "Student":
+            print("Handle Student action here")
+        case "Test":
+            print("Handle Test action here")
+//            NTUSTSystemManager.shared.Login(Account: "B10915003", Password: "A9%t376149") { success in
+//                if success {
+//                    // 登入成功
+//                    print("Login successful")
+//                } else {
+//                    // 登入失敗
+//                    print("Login failed")
+//                }
+//            }
+            NTUSTSystemManager.shared.Test()
+        default:
+            print("Unknown title")
+        }
     }
 }
 

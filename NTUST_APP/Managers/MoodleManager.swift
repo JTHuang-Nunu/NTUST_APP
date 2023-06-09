@@ -8,19 +8,19 @@
 import Foundation
 
 //登入 moodle 回傳的 json
-struct login_response: Codable{
+struct LoginResponse: Codable{
     var result: String
     var userid: Int
 }
 
 //課程列表回傳的 json
-struct courses_response: Codable {
-    var data: [courses]
+struct CoursesResponse: Codable {
+    var data: [Courses]
     var result: String
 }
 
 //課程列表 json
-struct courses: Codable {
+struct Courses: Codable {
     var course_category: String
     var course_id: String
     var department: String
@@ -34,45 +34,45 @@ struct courses: Codable {
 }
 
 //單一課程資訊回傳的 json
-struct course_page_response: Codable {
+struct CoursePageResponse: Codable {
     let courseid: Int
-    let data: course_page
+    let data: CoursePage
     let result: String
 }
 
 //單一課程資訊的 json
-struct course_page: Codable {
+struct CoursePage: Codable {
     let week_list: [CourseWeek]
 }
 
 //課程資訊的 week
 struct CourseWeek: Codable {
-    let section: [course_section]
+    let section: [CourseSection]
     let week: String
 }
 
 //課程資訊 week -> section
-struct course_section: Codable {
+struct CourseSection: Codable {
     let icon_url: String
     let name: String
     let url: String
 }
 
 //日曆回傳的 json
-struct calendar_response: Codable {
-    let data: calendar_data
+struct CalendarResponse: Codable {
+    let data: CalendarData
     let result: String
 }
 
 //日曆的 json
-struct calendar_data: Codable {
+struct CalendarData: Codable {
     let month: Int
-    let weeks: [[calendar_day]]
+    let weeks: [[CalendarDay]]
     let year: Int
 }
 
 //日曆的 day json
-struct calendar_day: Codable {
+struct CalendarDay: Codable {
     let events: [String]
     let mday: Int
 }
@@ -136,7 +136,7 @@ class MoodleManager {
                 // 讀取 json
                 do {
                     let decoder = JSONDecoder() //利用 json 解碼器
-                    let response_json = try decoder.decode(login_response.self, from: data)   //將解碼資料儲存在 codable 的 struct
+                    let response_json = try decoder.decode(LoginResponse.self, from: data)   //將解碼資料儲存在 codable 的 struct
                     self.userid = response_json.userid
                     
                     self.DebugPrint("Login", response_json.result)
@@ -158,9 +158,9 @@ class MoodleManager {
     /*
         func : 取得課程列表資訊
         parameter : None
-        return : Bool(是否取得成功), [courses](courses 的 struct 陣列)
+        return : Bool(是否取得成功), [Courses](Courses 的 struct 陣列)
      */
-    public func GetCourseList(completion: @escaping (Bool, [courses]) -> Void){
+    public func GetCourseList(completion: @escaping (Bool, [Courses]) -> Void){
         //取得 CourseList 的 api url
         let url = URL(string: "http://\(host_ip)/api/get_courses")!
         
@@ -205,7 +205,7 @@ class MoodleManager {
                 do {
                     
                     let decoder = JSONDecoder() //利用 json 解碼器
-                    let response_json = try decoder.decode(courses_response.self, from: data)   //將解碼資料儲存在 codable 的 struct
+                    let response_json = try decoder.decode(CoursesResponse.self, from: data)   //將解碼資料儲存在 codable 的 struct
                     self.DebugPrint("GetCourseList", response_json.result) //result
                     completion(true, response_json.data)
                 
@@ -225,11 +225,11 @@ class MoodleManager {
     /*
         func : 取得單一課程資訊
         parameter : None
-        return : Bool(是否取得成功), course_page(course_page 的 struct)
+        return : Bool(是否取得成功), CoursePage(CoursePage 的 struct)
      */
-    public func GetCouesePage(id:Int, completion: @escaping (Bool, course_page?) -> Void){
+    public func GetCouesePage(id:Int, completion: @escaping (Bool, CoursePage?) -> Void){
         //取得 CoursePage 的 api url
-        let url = URL(string: "http://\(host_ip)/api/get_course_page")!
+        let url = URL(string: "http://\(host_ip)/api/get_CoursePage")!
         
         //建立url request
         var request = URLRequest(url: url)
@@ -271,7 +271,7 @@ class MoodleManager {
                 do {
                     
                     let decoder = JSONDecoder() //利用 json 解碼器
-                    let response_json = try decoder.decode(course_page_response.self, from: data)   //將解碼資料儲存在 codable 的 struct
+                    let response_json = try decoder.decode(CoursePageResponse.self, from: data)   //將解碼資料儲存在 codable 的 struct
                     self.DebugPrint("GetCouesePage", response_json.result) //result
                     completion(true, response_json.data)
                 
@@ -292,9 +292,9 @@ class MoodleManager {
     /*
         func : 取得日曆資訊
         parameter : None
-        return : Bool(是否取得成功), calendar_data(calendar_data 的 struct)
+        return : Bool(是否取得成功), CalendarData(CalendarData 的 struct)
      */
-    public func GetCalendar(year:Int, month:Int, completion: @escaping (Bool, calendar_data?) -> Void){
+    public func GetCalendar(year:Int, month:Int, completion: @escaping (Bool, CalendarData?) -> Void){
         //取得 CoursePage 的 api url
         let url = URL(string: "http://\(host_ip)/api/get_calendar")!
         
@@ -339,7 +339,7 @@ class MoodleManager {
                 do {
                     
                     let decoder = JSONDecoder() //利用 json 解碼器
-                    let response_json = try decoder.decode(calendar_response.self, from: data)   //將解碼資料儲存在 codable 的 struct
+                    let response_json = try decoder.decode(CalendarResponse.self, from: data)   //將解碼資料儲存在 codable 的 struct
                     self.DebugPrint("GetCalendar", response_json.result) //result
                     completion(true, response_json.data)
                 

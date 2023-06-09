@@ -38,7 +38,7 @@ struct Card: View {
                         .padding(.bottom)
                 }
             }
-            .frame(width: 144, height: 164)
+            .frame(width: 100, height: 120)
             .padding()
         }
     }
@@ -47,7 +47,7 @@ struct Card: View {
 
 struct Card_Previews: PreviewProvider {
     static var previews: some View {
-        Card(IconName: "house", Title: "Home"){
+        Card(IconName: "paperplane", Title: "Home"){
             
         }
     }
