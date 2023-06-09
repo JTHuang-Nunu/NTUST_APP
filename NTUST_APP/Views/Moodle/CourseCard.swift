@@ -8,26 +8,43 @@
 import SwiftUI
 
 struct CourseCard: View {
-    var CourseName: String
+    var courseInfo: Courses
+    
     var body: some View {
-        ZStack{
-            RoundedRectangle(cornerRadius: 25, style: .continuous)
-                .fill(Color.white)
-                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 10)
-                .frame(height: 200)
-            Text(CourseName)
-                .font(.system(size: 24, weight: .bold))
-                .frame(width: 200, height: 100, alignment: .topLeading)
-                .padding(.top, 20)
-                .padding(.leading, 20)
-        }
-        .frame(width: 300, height: 150)
+        ZStack {
+            background
+            VStack(alignment: .leading) { // 使用 .leading 來將文本靠左對齊
+                Text(courseInfo.fullname)
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .lineLimit(1)
+                    .padding(.top, 40)
+                    .padding(.leading, 40)
+                
+                Text(courseInfo.department)
+                    .font(.system(size: 18, weight: .bold))
+                    .lineLimit(1)
+                    .padding(.leading, 40)
+                
+                Spacer() // 將文本推到最上方
+                
+            }
+            .frame(minWidth: 300, maxWidth: 500, minHeight: 150, maxHeight: 500)
         .padding()
+        }
+        
+    }
+    var background: some View{
+        RoundedRectangle(cornerRadius: 25, style: .continuous)
+            .fill(Color.white)
+            .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 10)
+            .aspectRatio(1.5, contentMode: .fit)
     }
 }
 
+
 struct CourseCard_Previews: PreviewProvider {
     static var previews: some View {
-        CourseCard(CourseName: "資料庫")
+        CourseCard(courseInfo: test_course)
     }
 }
