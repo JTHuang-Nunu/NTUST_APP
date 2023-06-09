@@ -117,8 +117,9 @@ struct LoginView: View {
                     print("Login successful")
                     alertType = .loginSuccess
                     
-                    MoodleManager.shared.Test()
-                    //TODO switch to the home screen
+                    //MoodleManager.shared.Test()
+                    //切換 view 到 MainView
+                    
                 } else {
                     // 登入失敗
                     print("Login failed")

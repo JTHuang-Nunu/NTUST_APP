@@ -7,16 +7,19 @@
 
 import Foundation
 
+//登入 moodle 回傳的 json
 struct login_response: Codable{
     var result: String
     var userid: Int
 }
 
+//課程列表回傳的 json
 struct courses_response: Codable {
     var data: [courses]
     var result: String
 }
 
+//課程列表 json
 struct courses: Codable {
     var course_category: String
     var course_id: String
@@ -30,25 +33,48 @@ struct courses: Codable {
     var viewurl: String
 }
 
+//單一課程資訊回傳的 json
 struct course_page_response: Codable {
     let courseid: Int
     let data: course_page
     let result: String
 }
 
+//單一課程資訊的 json
 struct course_page: Codable {
     let week_list: [CourseWeek]
 }
 
+//課程資訊的 week
 struct CourseWeek: Codable {
     let section: [course_section]
     let week: String
 }
 
+//課程資訊 week -> section
 struct course_section: Codable {
     let icon_url: String
     let name: String
     let url: String
+}
+
+//日曆回傳的 json
+struct calendar_response: Codable {
+    let data: calendar_data
+    let result: String
+}
+
+//日曆的 json
+struct calendar_data: Codable {
+    let month: Int
+    let weeks: [[calendar_day]]
+    let year: Int
+}
+
+//日曆的 day json
+struct calendar_day: Codable {
+    let events: [String]
+    let mday: Int
 }
 
 
@@ -56,7 +82,8 @@ class MoodleManager {
     var host_ip = "192.168.0.14:5000"
     var userid: Int = 0
     var login_status = false
-        
+    
+    // 建立 Singleton
     static let shared = MoodleManager()
     
     /*
@@ -65,9 +92,6 @@ class MoodleManager {
         return : Bool(是否登入成功)
      */
     public func Login(Account: String, Password: String, completion: @escaping (Bool) -> Void) {
-        self.DebugPrint("Login", "username: \(Account)")
-        self.DebugPrint("Login", "password: \(Password)")
-
         //登入網址
         let url = URL(string: "http://\(host_ip)/api/check_moodle_login")!
         
@@ -85,6 +109,8 @@ class MoodleManager {
             "username": Account,
             "password": Password
         ]
+        
+        self.DebugPrint("Login", parameters.description)
         
         //執行 request
         do {
@@ -129,16 +155,8 @@ class MoodleManager {
         task.resume()
     }
     
-    func Logout(){
-        print("Logout")
-    }
-    
-    func CheckLoginStatus() -> Bool{
-        return login_status
-    }
-    
     /*
-        func : 取得課程列表
+        func : 取得課程列表資訊
         parameter : None
         return : Bool(是否取得成功), [courses](courses 的 struct 陣列)
      */
@@ -162,6 +180,8 @@ class MoodleManager {
             "classification": "inprogress",
             "sort": "fullname"
         ]
+        
+        self.DebugPrint("GetCourseList", parameters.description)
         
         //執行 request
         do {
@@ -202,7 +222,11 @@ class MoodleManager {
         task.resume()
     }
     
-    
+    /*
+        func : 取得單一課程資訊
+        parameter : None
+        return : Bool(是否取得成功), course_page(course_page 的 struct)
+     */
     public func GetCouesePage(id:Int, completion: @escaping (Bool, course_page?) -> Void){
         //取得 CoursePage 的 api url
         let url = URL(string: "http://\(host_ip)/api/get_course_page")!
@@ -222,6 +246,8 @@ class MoodleManager {
             "userid": userid,
             "courseid": id
         ]
+        
+        self.DebugPrint("GetCouesePage", parameters.description)
         
         //執行 request
         do {
@@ -263,11 +289,93 @@ class MoodleManager {
         
     }
     
-    private func DebugPrint(_ func_name:String,_ message: String){
-        print("[MoodleManager] (\(func_name)): \(message)")
+    /*
+        func : 取得日曆資訊
+        parameter : None
+        return : Bool(是否取得成功), calendar_data(calendar_data 的 struct)
+     */
+    public func GetCalendar(year:Int, month:Int, completion: @escaping (Bool, calendar_data?) -> Void){
+        //取得 CoursePage 的 api url
+        let url = URL(string: "http://\(host_ip)/api/get_calendar")!
+        
+        //建立url request
+        var request = URLRequest(url: url)
+        
+        //request method
+        request.httpMethod = "POST"
+        
+        //request header`
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        //POST parameter
+        //{ "userid" : 0, "year" : 2023, "month" : 4}
+        let parameters: [String: Any] = [
+            "userid": userid,
+            "year": year,
+            "month": month
+        ]
+        
+        self.DebugPrint("GetCalendar", parameters.description)
+        
+        //執行 request
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        // 建立網路請求的 task
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            // 如果回傳為空
+            guard let data = data, error == nil else {
+                self.DebugPrint("GetCalendar", error?.localizedDescription ?? "No data")
+                completion(false, nil)
+                return
+            }
+            
+            // 將 data 轉換成 string
+            if String(data: data, encoding: .utf8) != nil {
+                // 讀取 json
+                do {
+                    
+                    let decoder = JSONDecoder() //利用 json 解碼器
+                    let response_json = try decoder.decode(calendar_response.self, from: data)   //將解碼資料儲存在 codable 的 struct
+                    self.DebugPrint("GetCalendar", response_json.result) //result
+                    completion(true, response_json.data)
+                
+                } catch {
+                    self.DebugPrint("GetCalendar", "Error decoding JSON: \(error)")
+                    completion(false, nil)
+                }
+            } else {
+                self.DebugPrint("GetCalendar","Invalid JSON data")
+                completion(false, nil)
+            }
+        }
+        
+        task.resume()
+        
     }
     
+    // 登出
+    func Logout(){
+        print("Logout")
+    }
+    
+    // 檢查是否登入
+    func CheckLoginStatus() -> Bool{
+        return login_status
+    }
+    
+    // 印出debug 資訊
+    private func DebugPrint(_ func_name:String,_ message: String){
+        print("[Moodle Manager] (\(func_name)): \(message)")
+    }
+    
+    
     public func Test() {
+        // UserDefaults.standard.set(calendarData, forKey: "calendarData")
+        
         self.GetCourseList() { result, data in
             print(result)
             if !data.isEmpty {
@@ -297,6 +405,22 @@ class MoodleManager {
                     }
                 }
             }
+        }
+        self.GetCalendar(year: 2023, month: 5) { result, data in
+            print(result)
+            if let data = data {
+                    print("Year: \(data.year)")
+                    print("Month: \(data.month)")
+                    
+                    for week in data.weeks {
+                        for day in week {
+                            print("Day: \(day.mday)")
+                            for event in day.events {
+                                print("Event: \(event)")
+                            }
+                        }
+                    }
+                }
         }
     }
     
