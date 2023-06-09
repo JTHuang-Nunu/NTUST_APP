@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CourseView: View {
-    var courseInfo: CourseInfo
     let tabItems = ["課程", "公告", "成績"]
     
     @State var selectedTab = 0
@@ -28,7 +27,7 @@ struct CourseView: View {
     
     }
     var title: some View{
-        Text(courseInfo.fullname)
+        Text("編譯器設計")
             .font(.title)
             .fontWeight(.bold)
             .padding()
@@ -36,7 +35,7 @@ struct CourseView: View {
     }
     var courseInfoDisplay: some View{
         VStack{
-            Text("課程代碼: \(courseInfo.course_id)")
+            Text("課程代碼: ")
         }
     }
     var tabContent: some View{
@@ -79,8 +78,7 @@ struct CourseView: View {
 struct CourseView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack{
-            let testInfo = CourseInfo(course_category: "", course_id: "", enddate: Date(), fullname: "CS3020301 編譯器設計 Compiler Design", hasprogress: false, progress: 0, startdate: Date(), viewurl: "")
-            CourseView(courseInfo: testInfo)
+            CourseView()
 
         }
     }

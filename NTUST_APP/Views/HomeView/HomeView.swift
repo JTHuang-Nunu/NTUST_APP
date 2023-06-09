@@ -47,12 +47,24 @@ struct HomeView: View {
         ZStack{
             ScrollView{
                 LazyVGrid(columns: columns){
-                    Card(IconName: "house", Title: "Home")
-                    Card(IconName: "book", Title: "Course")
-                    Card(IconName: "calendar", Title: "Calendar")
-                    Card(IconName: "person.3", Title: "Club")
-                    Card(IconName: "person", Title: "Teacher")
-                    Card(IconName: "person.2", Title: "Student")
+                    Card(IconName: "house", Title: "Home"){
+                        
+                    }
+                    Card(IconName: "book", Title: "Course"){
+                        
+                    }
+                    Card(IconName: "calendar", Title: "Calendar"){
+                        
+                    }
+                    Card(IconName: "person.3", Title: "Club"){
+                        
+                    }
+                    Card(IconName: "person", Title: "Teacher"){
+                        
+                    }
+                    Card(IconName: "person.2", Title: "Student"){
+                        
+                    }
                 }
             }
         }
