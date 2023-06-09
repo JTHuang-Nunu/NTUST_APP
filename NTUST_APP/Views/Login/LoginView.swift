@@ -112,12 +112,14 @@ struct LoginView: View {
                     print("Login successful")
                     alertType = .loginSuccess
                     
+                    MoodleManager.shared.Test()
                     //TODO switch to the home screen
                 } else {
                     // 登入失敗
                     print("Login failed")
                     alertType = .loginFailure
                 }
+                
                 isLoading = false
             }
         }) {
