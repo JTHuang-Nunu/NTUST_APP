@@ -65,8 +65,8 @@ class MoodleManager {
         return : Bool(是否登入成功)
      */
     public func Login(Account: String, Password: String, completion: @escaping (Bool) -> Void) {
-        self.DebugPrint("Login", Account)
-        self.DebugPrint("Login", Password)
+        self.DebugPrint("Login", "username: \(Account)")
+        self.DebugPrint("Login", "password: \(Password)")
 
         //登入網址
         let url = URL(string: "http://\(host_ip)/api/check_moodle_login")!
@@ -268,14 +268,36 @@ class MoodleManager {
     }
     
     public func Test() {
-        self.GetCourseList() { result, course in
+        self.GetCourseList() { result, data in
             print(result)
-            print(course)
-        
+            if !data.isEmpty {
+                for course in data {
+                    print("Course ID: \(course.course_id)")
+                    print("Course Department: \(course.department)")
+                    print("Course Fullname: \(course.fullname)")
+                    print("Course Start Date: \(course.startdate)")
+                    print("Course End Date: \(course.enddate)")
+                    print("Course Progress: \(course.progress)")
+                    print("Course View URL: \(course.viewurl)")
+                    print("---")
+                }
+            }
         }
-//        self.GetCouesePage(id: 4932) { result in
-//
-//        }
+        self.GetCouesePage(id: 4932) { result, data  in
+            print(result)
+            if let data = data {
+                for week in data.week_list {
+                    print("Week: \(week.week)")
+                    
+                    for section in week.section {
+                        print("Section Name: \(section.name)")
+                        print("Icon URL: \(section.icon_url)")
+                        print("URL: \(section.url)")
+                        print("---")
+                    }
+                }
+            }
+        }
     }
     
 }

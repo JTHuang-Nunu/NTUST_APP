@@ -99,6 +99,11 @@ struct LoginView: View {
     var LoginButton: some View {
         Button(action: {
             print("Login Button Pressed")
+            //收起小鍵盤
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            
+            
+            
             if account.isEmpty || password.isEmpty
             {
                 alertType = .loginFailure
