@@ -83,15 +83,6 @@ struct MainView: View {
             print("Handle Student action here")
         case "Test":
             print("Handle Test action here")
-//            NTUSTSystemManager.shared.Login(Account: "B10915003", Password: "A9%t376149") { success in
-//                if success {
-//                    // 登入成功
-//                    print("Login successful")
-//                } else {
-//                    // 登入失敗
-//                    print("Login failed")
-//                }
-//            }
             NTUSTSystemManager.shared.Test()
         default:
             print("Unknown title")
