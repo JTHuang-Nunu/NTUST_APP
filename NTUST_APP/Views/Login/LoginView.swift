@@ -15,10 +15,16 @@ enum AlertType: Identifiable {
 }
 
 struct LoginView: View {
+    @Binding var isLoggedIn: Bool
+    
     @State private var account: String = ""
     @State private var password: String = ""
     @State private var isLoading = false
     @State private var alertType: AlertType? = nil
+    
+    init(isLoggedIn: Binding<Bool> = .constant(false)) {
+        self._isLoggedIn = isLoggedIn
+    }
     
     var body: some View {
         VStack {
@@ -62,6 +68,7 @@ struct LoginView: View {
                 )
             }
         }
+
     }
     
     var IconTitle: some View {
@@ -99,6 +106,11 @@ struct LoginView: View {
     var LoginButton: some View {
         Button(action: {
             print("Login Button Pressed")
+            //收起小鍵盤
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+            
+            
+            
             if account.isEmpty || password.isEmpty
             {
                 alertType = .loginFailure
@@ -111,13 +123,15 @@ struct LoginView: View {
                     // 登入成功
                     print("Login successful")
                     alertType = .loginSuccess
+                    isLoggedIn = true
                     
-                    //TODO switch to the home screen
+                    //MoodleManager.shared.Test()
                 } else {
                     // 登入失敗
                     print("Login failed")
                     alertType = .loginFailure
                 }
+                
                 isLoading = false
             }
         }) {
