@@ -43,7 +43,7 @@ struct CourseTableRow: Codable {
 
 
 class NTUSTSystemManager{
-    var host_ip = "192.168.0.14:5000"
+    var host_ip = "192.168.137.137:5000"
     var userid: Int = 0
     var login_status = false
     
