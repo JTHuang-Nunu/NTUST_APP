@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BFB803B62A334C3C0011F454 /* YouBikeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB803B52A334C3C0011F454 /* YouBikeManager.swift */; };
 		D8CB139D2A0D2E9B00BFB673 /* NTUST_APP.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB139C2A0D2E9B00BFB673 /* NTUST_APP.swift */; };
 		D8CB139F2A0D2E9B00BFB673 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB139E2A0D2E9B00BFB673 /* ContentView.swift */; };
 		D8CB13A12A0D2E9E00BFB673 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8CB13A02A0D2E9E00BFB673 /* Assets.xcassets */; };
@@ -28,7 +29,6 @@
 		E78F28872A33486200E32171 /* YoubikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78F28862A33486200E32171 /* YoubikeView.swift */; };
 		E7C443192A2737FC00E9040F /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C443182A2737FC00E9040F /* Card.swift */; };
 		E7FE29052A2A598A0057A1A1 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FE29042A2A598A0057A1A1 /* NavigationBar.swift */; };
-		E7FE29072A2A63540057A1A1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FE29062A2A63540057A1A1 /* MainView.swift */; };
 		E7FE290A2A2A640D0057A1A1 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FE29092A2A640D0057A1A1 /* SettingView.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BFB803B52A334C3C0011F454 /* YouBikeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouBikeManager.swift; sourceTree = "<group>"; };
 		D8CB13992A0D2E9B00BFB673 /* NTUST_APP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NTUST_APP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CB139C2A0D2E9B00BFB673 /* NTUST_APP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTUST_APP.swift; sourceTree = "<group>"; };
 		D8CB139E2A0D2E9B00BFB673 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -74,7 +75,6 @@
 		E78F28862A33486200E32171 /* YoubikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoubikeView.swift; sourceTree = "<group>"; };
 		E7C443182A2737FC00E9040F /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		E7FE29042A2A598A0057A1A1 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
-		E7FE29062A2A63540057A1A1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		E7FE29092A2A640D0057A1A1 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -162,14 +162,6 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		E712FBED2A286836005282AE /* MainView */ = {
-			isa = PBXGroup;
-			children = (
-				E7FE29062A2A63540057A1A1 /* MainView.swift */,
-			);
-			path = MainView;
-			sourceTree = "<group>";
-		};
 		E772E5622A321782004CCCA8 /* Moodle */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +178,7 @@
 			children = (
 				E778647B2A2B5D4300280EBF /* MoodleManager.swift */,
 				E778647D2A2B5F4200280EBF /* NTUSTSystemManager.swift */,
+				BFB803B52A334C3C0011F454 /* YouBikeManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -196,7 +189,6 @@
 				E78F28852A33484900E32171 /* Youbike */,
 				E772E5622A321782004CCCA8 /* Moodle */,
 				E7FE290B2A2A642C0057A1A1 /* HomeView */,
-				E712FBED2A286836005282AE /* MainView */,
 				E7FE29082A2A64000057A1A1 /* Setting */,
 				E7FE29032A2A59730057A1A1 /* Utils */,
 				E712FBEC2A286811005282AE /* Login */,
@@ -373,7 +365,6 @@
 				E78F28872A33486200E32171 /* YoubikeView.swift in Sources */,
 				E778647E2A2B5F4200280EBF /* NTUSTSystemManager.swift in Sources */,
 				E712FBE62A27C37F005282AE /* TimeTableUnit.swift in Sources */,
-				E7FE29072A2A63540057A1A1 /* MainView.swift in Sources */,
 				E772E5662A321815004CCCA8 /* CourseCard.swift in Sources */,
 				E772E5612A3215ED004CCCA8 /* AccountView.swift in Sources */,
 				D8CB13A92A0D2E9E00BFB673 /* NTUST_APP.xcdatamodeld in Sources */,
@@ -387,6 +378,7 @@
 				E772E5682A3224A6004CCCA8 /* CourseView.swift in Sources */,
 				D8CB139F2A0D2E9B00BFB673 /* ContentView.swift in Sources */,
 				E78A810A2A271B9E005497F1 /* LoginView.swift in Sources */,
+				BFB803B62A334C3C0011F454 /* YouBikeManager.swift in Sources */,
 				D8CB139D2A0D2E9B00BFB673 /* NTUST_APP.swift in Sources */,
 				E712FBE42A27C0F8005282AE /* SchoolTimeTable.swift in Sources */,
 				E772E5642A321798004CCCA8 /* MoodleHome.swift in Sources */,

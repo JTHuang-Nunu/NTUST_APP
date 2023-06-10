@@ -10,18 +10,16 @@ import SwiftUI
 @main
 struct NTUST_APP: App {
     let persistenceController = PersistenceController.shared
-    @State private var isLoggedIn = true
+    @State private var isLoggedIn = false
 
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                if isLoggedIn {
-                    MainView()
-                        .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                } else {
-                    LoginView(isLoggedIn: $isLoggedIn)
-                        .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                }
+            if isLoggedIn {
+                HomeView()
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            } else {
+                LoginView()
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
             }
         }
     }
