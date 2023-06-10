@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct NTUST_APP: App {
     let persistenceController = PersistenceController.shared
-    @State private var isLoggedIn = false
+    @State private var isLoggedIn = true
 
     var body: some Scene {
         WindowGroup {
