@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		BFB803B62A334C3C0011F454 /* YouBikeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB803B52A334C3C0011F454 /* YouBikeManager.swift */; };
+		BFB803B92A34BE610011F454 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB803B82A34BE610011F454 /* ScoreView.swift */; };
+		BFB803BB2A355DB20011F454 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB803BA2A355DB20011F454 /* MapView.swift */; };
 		D8CB139D2A0D2E9B00BFB673 /* NTUST_APP.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB139C2A0D2E9B00BFB673 /* NTUST_APP.swift */; };
 		D8CB139F2A0D2E9B00BFB673 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB139E2A0D2E9B00BFB673 /* ContentView.swift */; };
 		D8CB13A12A0D2E9E00BFB673 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8CB13A02A0D2E9E00BFB673 /* Assets.xcassets */; };
@@ -52,6 +54,8 @@
 
 /* Begin PBXFileReference section */
 		BFB803B52A334C3C0011F454 /* YouBikeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouBikeManager.swift; sourceTree = "<group>"; };
+		BFB803B82A34BE610011F454 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
+		BFB803BA2A355DB20011F454 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		D8CB13992A0D2E9B00BFB673 /* NTUST_APP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NTUST_APP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CB139C2A0D2E9B00BFB673 /* NTUST_APP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTUST_APP.swift; sourceTree = "<group>"; };
 		D8CB139E2A0D2E9B00BFB673 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -105,6 +109,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BFB803B72A34BE390011F454 /* Ntust */ = {
+			isa = PBXGroup;
+			children = (
+				BFB803B82A34BE610011F454 /* ScoreView.swift */,
+				BFB803BA2A355DB20011F454 /* MapView.swift */,
+			);
+			path = Ntust;
+			sourceTree = "<group>";
+		};
 		D8CB13902A0D2E9B00BFB673 = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				E77717322A35E8AF00A914F1 /* Main */,
+				BFB803B72A34BE390011F454 /* Ntust */,
 				E78F28852A33484900E32171 /* Youbike */,
 				E772E5622A321782004CCCA8 /* Moodle */,
 				E7FE290B2A2A642C0057A1A1 /* HomeView */,
@@ -380,7 +394,9 @@
 				E772E5612A3215ED004CCCA8 /* AccountView.swift in Sources */,
 				D8CB13A92A0D2E9E00BFB673 /* NTUST_APP.xcdatamodeld in Sources */,
 				E77717342A35E8C200A914F1 /* MainView.swift in Sources */,
+				BFB803B92A34BE610011F454 /* ScoreView.swift in Sources */,
 				E78A810C2A27230B005497F1 /* HomeView.swift in Sources */,
+				BFB803BB2A355DB20011F454 /* MapView.swift in Sources */,
 				E7C443192A2737FC00E9040F /* Card.swift in Sources */,
 				D8CB13A62A0D2E9E00BFB673 /* Persistence.swift in Sources */,
 				E7FE29052A2A598A0057A1A1 /* NavigationBar.swift in Sources */,
