@@ -6,15 +6,17 @@
 //
 
 import SwiftUI
+import os
 
 struct CourseView: View {
     
-    let CourseID: Int
+    let courseInfo: Courses
     let tabItems = ["課程", "公告", "成績"]
     @State var coursePage: CoursePage? = nil
     
     @State var selectedTab = 0
     
+    private let logger = Logger(subsystem: "Moodle", category: "CourseView")
     
     var body: some View {
         VStack{
@@ -23,10 +25,11 @@ struct CourseView: View {
                 courseInfoDisplay
                 Spacer()
             }
-            
-            
             tabContent
             tab
+        }
+        .task{
+            loadCoursePage()
         }
     
     }
@@ -45,16 +48,22 @@ struct CourseView: View {
         }
     }
     var tabContent: some View{
-        Group{
-            switch selectedTab{
-            case 0:
-                SectionTabView(coursePage: sampleCoursePage)
-            case 1:
-                Text("公告")
-            case 2:
-                Text("成績")
-            default:
-                EmptyView()
+        Group {
+            if let coursePage = coursePage {
+                
+                switch selectedTab{
+                case 0:
+                    SectionTabView(coursePage: coursePage)
+                case 1:
+                    Text("公告")
+                case 2:
+                    Text("成績")
+                default:
+                    EmptyView()
+                }
+            }else{
+                ProgressView()
+            
             }
         }
     }
@@ -83,10 +92,13 @@ struct CourseView: View {
 
     
     private func loadCoursePage(){
-        assert(MoodleManager.shared.login_status == true)
-        MoodleManager.shared.GetCouesePage(id: CourseID){ seccess, page in
+        //assert(MoodleManager.shared.login_status == true)
+        MoodleManager.shared.GetCouesePage(id: courseInfo.id){ seccess, page in
             if seccess{
                 coursePage = page
+            }else{
+                logger.error("GetCoursePage failed")
+            
             }
         }
     }
@@ -96,7 +108,7 @@ struct CourseView: View {
 struct CourseView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack{
-            CourseView(CourseID: 123)
+            //CourseView(courseInfo: <#T##Courses#>)
 
         }
     }

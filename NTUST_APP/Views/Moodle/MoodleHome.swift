@@ -41,7 +41,7 @@ struct MoodleHome: View {
     var CourseList: some View{
         VStack{
             ForEach(courseList, id: \.course_id){ course in
-                NavigationLink(destination: CourseView(CourseID: course.id)){
+                NavigationLink(destination: CourseView(courseInfo: course)){
                     CourseCard(courseInfo: course)
                 }
             
@@ -51,21 +51,15 @@ struct MoodleHome: View {
     }
     
     private func loadCourseList(){
-//        assert(MoodleManager.shared.login_status == true)
-//        MoodleManager.shared.GetCourseList{ success, courses in
-//            if success{
-//                self.courseList = courses
-//            }else{
-//                logger.error("GetCourseList failed")
-//
-//            }
-//        }
-        courseList = [
-            Courses(course_category: "", course_id: "0", department: "資工系", enddate: "", fullname: "編譯器設計", hasprogress: false, id: 1234, progress: 1, startdate: "", viewurl: ""),
-            Courses(course_category: "", course_id: "2", department: "資工系", enddate: "", fullname: "資料庫系統", hasprogress: false, id: 1235, progress: 1, startdate: "", viewurl: ""),
-            Courses(course_category: "", course_id: "3", department: "資工系", enddate: "", fullname: "IOS程式設計", hasprogress: false, id: 1236, progress: 1, startdate: "", viewurl: ""),
-            
-        ]
+        //assert(MoodleManager.shared.login_status == true)
+        MoodleManager.shared.GetCourseList{ success, courses in
+            if success{
+                self.courseList = courses
+            }else{
+                logger.error("GetCourseList failed")
+
+            }
+        }
     }
 
 }
@@ -76,3 +70,10 @@ struct MoodleHome_Previews: PreviewProvider {
         MoodleHome()
     }
 }
+
+let test_course_list = [
+    Courses(course_category: "", course_id: "0", department: "資工系", enddate: "", fullname: "編譯器設計", hasprogress: false, id: 1234, progress: 1, startdate: "", viewurl: ""),
+    Courses(course_category: "", course_id: "2", department: "資工系", enddate: "", fullname: "資料庫系統", hasprogress: false, id: 1235, progress: 1, startdate: "", viewurl: ""),
+    Courses(course_category: "", course_id: "3", department: "資工系", enddate: "", fullname: "IOS程式設計", hasprogress: false, id: 1236, progress: 1, startdate: "", viewurl: ""),
+    
+]

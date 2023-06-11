@@ -8,15 +8,17 @@
 import SwiftUI
 
 struct SectionTabView: View {
-    let coursePage: CoursePage
+    var coursePage: CoursePage
     
     var body: some View {
-        VStack(spacing: 20) {
-            ForEach(coursePage.week_list, id: \.week) { week in
-                WeekView(week: week)
-                    .padding()
-                    .background(Color.blue)
-                    .cornerRadius(10)
+        ScrollView {
+            VStack(spacing: 20) {
+                ForEach(coursePage.week_list, id: \.week) { week in
+                    WeekView(week: week)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                }
             }
         }
     }
@@ -47,7 +49,7 @@ struct SectionRowView: View {
     
     var body: some View {
         HStack {
-            Image(systemName: section.icon_url)
+            Image(systemName: "book")
                 .font(.title)
             
             Text(section.name)
