@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct NTUST_APP: App {
     let persistenceController = PersistenceController.shared
-    @State private var isLoggedIn = true
+    @State private var isLoggedIn = false
 
     var body: some Scene {
         WindowGroup {
@@ -18,7 +18,7 @@ struct NTUST_APP: App {
                 HomeView()
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
             } else {
-                LoginView()
+                MapView()
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
             }
         }
