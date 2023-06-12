@@ -7,30 +7,87 @@
 
 import SwiftUI
 
-protocol NeedLoginView: View{
-    var loginType: LoginType { get }
-    var showLoginView: Binding<Bool> { get set }
-    func MainBody() -> AnyView
+class LoginStatus: ObservableObject {
+    @Published var isLoginMoodle: Bool = MoodleManager.shared.login_status
+    @Published var isLoginNTUST: Bool = NTUSTSystemManager.shared.login_status
 }
 
-extension NeedLoginView{
+struct NeedLoginView: View {
+    let RequireLoginType: LoginType
+    let action: () -> Void
+    
+    @EnvironmentObject var loginStatus: LoginStatus
+
     var body: some View {
-        MainBody()
-            .onAppear{
-                switch loginType {
-                case .Moodle:
-                    if !MoodleManager.shared.login_status{
-                        showLoginView.wrappedValue = true
-                    }
-                case .NTUST:
-                    if !NTUSTSystemManager.shared.login_status{
-                        showLoginView.wrappedValue = true
-                    }
-                }
+        switch RequireLoginType{
+        case .Moodle:
+            if loginStatus.isLoginMoodle {
+                EmptyView()
+            } else {
+                MoodleRequireView
             }
-            .sheet(isPresented: showLoginView){
-                LoginView(loginType: loginType)
+        case .NTUST:
+            if loginStatus.isLoginNTUST {
+                EmptyView()
+            } else {
+                NTUSTRequireView
             }
+        }
+    }
+    var MoodleRequireView: some View{
+        VStack{
+            Text("需要Moodle系統登入")
+                .font(.title)
+                .fontWeight(.bold)
+                .multilineTextAlignment(.center)
+                .padding()
+            
+            Button{
+                action()
+            }label: {
+                Text("登入")
+                    .font(.body)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.blue)
+                    .cornerRadius(10)
+            
+            }
+        }
+    }
+    var NTUSTRequireView: some View{
+        VStack{
+            Text("需要NTUST系統登入")
+                .font(.title)
+                .fontWeight(.bold)
+                .multilineTextAlignment(.center)
+                .padding()
+            
+            Button{
+                action()
+            }label: {
+                Text("登入")
+                    .font(.body)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .padding()
+                    .background(Color.blue)
+                    .cornerRadius(10)
+            
+            }
+        }
     }
 }
+
+struct NeedLoginView_Previews: PreviewProvider {
+    static var previews: some View {
+        NeedLoginView(RequireLoginType: .Moodle){
+            print("press 登入")
+        }
+            .environmentObject(LoginStatus())
+    
+    }
+}
+
 

@@ -11,28 +11,36 @@ import os
 struct MoodleHome: View {
     @State var courseList: [Courses] = []
     @State var showLoginView = false
-    
+    @State var loginState: LoginStatus = LoginStatus()
     private let logger = Logger(subsystem: "Moodle", category: "MoodleHome")
     
     var body: some View {
         NavigationStack{
-            ScrollView{
-                CourseList
-                    .task{
-                        loadCourseList()
+            Group{
+                if loginState.isLoginMoodle{
+                    mainBody
+                }else{
+                    NeedLoginView(RequireLoginType: .Moodle){
+                        showLoginView = true
                     }
+                    .environmentObject(loginState)
+                }
+                
             }
             .navigationTitle("Moodle")
-        }
-        .onAppear{
-            if !MoodleManager.shared.login_status{
-                showLoginView = true
-            }
         }
         .sheet(isPresented: $showLoginView){
             LoginView(loginType: .Moodle)
         }
         .padding()
+    }
+    var mainBody: some View{
+        ScrollView {
+            CourseList
+                .task{
+                    loadCourseList()
+            }
+        }
     }
     
     var title: some View{
@@ -46,6 +54,7 @@ struct MoodleHome: View {
         .padding(.horizontal)
     
     }
+    
     
     var CourseList: some View{
         VStack{

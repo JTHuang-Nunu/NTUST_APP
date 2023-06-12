@@ -23,6 +23,10 @@ struct MainView: View {
                 .tabItem {
                     Label("Moodle", systemImage: "book")
                 }
+            Bulletin()
+                .tabItem{
+                    Label("公布欄", systemImage: "newspaper")
+                }
             SettingView()
                 .tabItem {
                     Label("設定", systemImage: "gearshape")

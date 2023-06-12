@@ -62,23 +62,31 @@ struct HomeView: View {
         ZStack{
             ScrollView{
                 Grid{
-                    ForEach(Array(CardGridMap.keys), id: \.self) { key in
-                        if let card1 = CardGridMap[key]?.0, let card2 = CardGridMap[key]?.1 {
-                            GridRow {
-                                NavigationLink(destination: card2) {
-                                    card1
+                    ForEach(0..<CardGridMap.count){ i in
+                        GridRow{
+                            ForEach(0..<CardGridMap[i].count){ j in
+                                NavigationLink(destination: CardGridMap[i][j].1){
+                                    CardGridMap[i][j].0
                                 }
                             }
                         }
                     }
+                    
                 }
             }
         }
         
     }
-    let CardGridMap: [String: (AnyView, AnyView)] = [
-        "學校地圖": (AnyView(Card(IconName: "map", Title: "學校地圖")), AnyView(MapView())),
-        "成績": (AnyView(Card(IconName: "book", Title: "成績")), AnyView(ScoreView(scores: [])))
+    let CardGridMap: [[(AnyView, AnyView)]] =
+    [
+        [
+        (AnyView(Card(IconName: "map", Title: "學校地圖")), AnyView(MapView())),
+        (AnyView(Card(IconName: "book", Title: "成績")), AnyView(ScoreView(scores: [])))
+        ],
+        [
+        (AnyView(Card(IconName: "bicycle", Title: "YouBike資訊")), AnyView(MapView())),
+        (AnyView(Card(IconName: "calendar", Title: "課表")), AnyView(ScoreView(scores: [])))
+        ],
     ]
 
         

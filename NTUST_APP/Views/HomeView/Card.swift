@@ -20,7 +20,7 @@ struct Card: View {
             VStack {
                 // Circle Icon
                 Image(systemName: IconName)
-                    .frame(width: 50, height: 50)
+                    .frame(width: 75, height: 75)
                     .clipShape(Circle())
                     .overlay(Circle().stroke(Color.white, lineWidth: 4))
                     .shadow(radius: 10)
