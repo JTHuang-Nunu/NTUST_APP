@@ -22,11 +22,14 @@ struct CourseView: View {
         VStack{
             VStack {
                 title
-                courseInfoDisplay
-                Spacer()
             }
-            tabContent
-            tab
+            if coursePage != nil{
+                tab
+                tabContent
+            }
+            else{
+                ProgressView()
+            }
         }
         .task{
             loadCoursePage()
@@ -34,19 +37,33 @@ struct CourseView: View {
     
     }
     var title: some View{
-        HStack{
-            Text("編譯器設計")
+        VStack{
+            Text(parseFullName(fullName: courseInfo.fullname))
                 .font(.title)
                 .fontWeight(.bold)
                 .padding()
+            Text(courseInfo.department)
+                .font(.title3)
+                .fontWeight(.bold)
+                .padding()
+        }
+    }
+    
+    func parseFullName(fullName: String) -> String {
+        let pattern = #"【.+】([A-Za-z0-9]+)"#
+        
+        if let range = fullName.range(of: pattern, options: .regularExpression) {
+            var name = String(fullName[range.upperBound...])
+            name = name.replacingOccurrences(of: "[A-Za-z0-9]+", with: "", options: .regularExpression)
+            name = name.replacingOccurrences(of: " ", with: "")
+            name = name.replacingOccurrences(of: "(", with: " ")
+            name = name.replacingOccurrences(of: ")", with: " ")
+            return name
+        }
+        
+        return ""
+    }
 
-        }
-    }
-    var courseInfoDisplay: some View{
-        VStack{
-            Text("課程代碼: ")
-        }
-    }
     var tabContent: some View{
         Group {
             if let coursePage = coursePage {

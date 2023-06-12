@@ -11,29 +11,43 @@ struct CourseCard: View {
     var courseInfo: Courses
     
     var body: some View {
-        ZStack {
-            background
-            VStack(alignment: .leading) { // 使用 .leading 來將文本靠左對齊
-                Text(courseInfo.fullname)
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .lineLimit(1)
-                    .padding(.top, 40)
-                    .padding(.leading, 40)
-                
-                Text(courseInfo.department)
-                    .font(.system(size: 18, weight: .bold))
-                    .lineLimit(1)
-                    .padding(.leading, 40)
-                
-                Spacer() // 將文本推到最上方
-                
-            }
-            .frame(minWidth: 300, maxWidth: 500, minHeight: 150, maxHeight: 500)
-        .padding()
+
+        VStack(alignment: .leading) {
+            let chname = parseFullName(fullName: courseInfo.fullname)
+            Text(chname)
+                .font(.title2)
+                .fontWeight(.bold)
+                .lineLimit(1)
+                .padding(.top, 5)
+                .padding(.leading, 5)
+            
+            Text(courseInfo.department)
+                .font(.caption)
+                .fontWeight(.light)
+                .lineLimit(1)
+                .padding(.leading, 5)
+            
         }
+
         
     }
+    
+    func parseFullName(fullName: String) -> String {
+        let pattern = #"【.+】([A-Za-z0-9]+)"#
+        
+        if let range = fullName.range(of: pattern, options: .regularExpression) {
+            var name = String(fullName[range.upperBound...])
+            name = name.replacingOccurrences(of: "[A-Za-z0-9]+", with: "", options: .regularExpression)
+            name = name.replacingOccurrences(of: " ", with: "")
+            name = name.replacingOccurrences(of: "(", with: " ")
+            name = name.replacingOccurrences(of: ")", with: " ")
+            return name
+        }
+        
+        return ""
+    }
+
+    
     var background: some View{
         RoundedRectangle(cornerRadius: 25, style: .continuous)
             .fill(Color.white)
@@ -48,3 +62,4 @@ struct CourseCard_Previews: PreviewProvider {
         CourseCard(courseInfo: test_course)
     }
 }
+let test_course = Courses(course_category: "", course_id: "0", department: "資工系", enddate: "", fullname: "111.2【資工系】CS3010301 資料庫系統 Database Systems", hasprogress: false, id: 1234, progress: 1, startdate: "", viewurl: "")

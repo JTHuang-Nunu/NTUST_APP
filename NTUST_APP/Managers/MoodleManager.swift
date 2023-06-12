@@ -376,21 +376,21 @@ class MoodleManager: ObservableObject {
     public func Test() {
         // UserDefaults.standard.set(calendarData, forKey: "calendarData")
         
-        self.GetCourseList() { result, data in
-            print(result)
-            if !data.isEmpty {
-                for course in data {
-                    print("Course ID: \(course.course_id)")
-                    print("Course Department: \(course.department)")
-                    print("Course Fullname: \(course.fullname)")
-                    print("Course Start Date: \(course.startdate)")
-                    print("Course End Date: \(course.enddate)")
-                    print("Course Progress: \(course.progress)")
-                    print("Course View URL: \(course.viewurl)")
-                    print("---")
-                }
-            }
-        }
+//        self.GetCourseList() { result, data in
+//            print(result)
+//            if !data.isEmpty {
+//                for course in data {
+//                    print("Course ID: \(course.course_id)")
+//                    print("Course Department: \(course.department)")
+//                    print("Course Fullname: \(course.fullname)")
+//                    print("Course Start Date: \(course.startdate)")
+//                    print("Course End Date: \(course.enddate)")
+//                    print("Course Progress: \(course.progress)")
+//                    print("Course View URL: \(course.viewurl)")
+//                    print("---")
+//                }
+//            }
+//        }
         self.GetCouesePage(id: 4932) { result, data  in
             print(result)
             if let data = data {
@@ -406,22 +406,22 @@ class MoodleManager: ObservableObject {
                 }
             }
         }
-        self.GetCalendar(year: 2023, month: 5) { result, data in
-            print(result)
-            if let data = data {
-                    print("Year: \(data.year)")
-                    print("Month: \(data.month)")
-                    
-                    for week in data.weeks {
-                        for day in week {
-                            print("Day: \(day.mday)")
-                            for event in day.events {
-                                print("Event: \(event)")
-                            }
-                        }
-                    }
-                }
-        }
+//        self.GetCalendar(year: 2023, month: 5) { result, data in
+//            print(result)
+//            if let data = data {
+//                    print("Year: \(data.year)")
+//                    print("Month: \(data.month)")
+//
+//                    for week in data.weeks {
+//                        for day in week {
+//                            print("Day: \(day.mday)")
+//                            for event in day.events {
+//                                print("Event: \(event)")
+//                            }
+//                        }
+//                    }
+//                }
+//        }
     }
     
 }

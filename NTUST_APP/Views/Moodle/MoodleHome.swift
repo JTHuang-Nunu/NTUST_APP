@@ -9,7 +9,7 @@ import SwiftUI
 import os
 
 struct MoodleHome: View {
-    @State var courseList: [Courses] = []
+    @State var courseList: [Courses]? = nil
     @State var showLoginView = false
     @StateObject var moodleManager = MoodleManager.shared
     private let logger = Logger(subsystem: "Moodle", category: "MoodleHome")
@@ -27,64 +27,55 @@ struct MoodleHome: View {
                 
             }
             .navigationTitle("Moodle")
-        }
-        .sheet(isPresented: $showLoginView){
-            LoginView(loginType: .Moodle)
-        }
-        .padding()
-    }
-    var mainBody: some View{
-        ScrollView {
-            CourseList
-                .task{
-                    loadCourseList()
+            .sheet(isPresented: $showLoginView){
+                LoginView(loginType: .Moodle)
             }
         }
     }
-    
-    var title: some View{
-        HStack{
-            Text("Moodle")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .foregroundColor(.black)
-            Spacer()
+    var mainBody: some View{
+        VStack {
+            Group {
+                if self.courseList == nil{
+                    ProgressView()
+                }else{
+                    CourseList
+                }
+            }
+            .task{
+                loadCourseList()
+            }
         }
-        .padding(.horizontal)
-    
     }
     
     
     var CourseList: some View{
-        VStack{
-            ForEach(courseList, id: \.course_id){ course in
-                NavigationLink(destination: CourseView(courseInfo: course)){
-                    CourseCard(courseInfo: course)
-                }
-            
+        List(courseList!, id: \.id){ course in
+            NavigationLink(destination: CourseView(courseInfo: course)){
+                CourseCard(courseInfo: course)
             }
-        
         }
     }
-    
     private func loadCourseList(){
         //assert(MoodleManager.shared.login_status == true)
         MoodleManager.shared.GetCourseList{ success, courses in
             if success{
                 self.courseList = courses
+                print(self.courseList?.count)
             }else{
                 logger.error("GetCourseList failed")
-
+                self.courseList = nil
             }
+            print("GetCourseList success: \(success)")
+            
         }
     }
 
 }
-let test_course = Courses(course_category: "", course_id: "0", department: "資工系", enddate: "", fullname: "編譯器設計", hasprogress: false, id: 1234, progress: 1, startdate: "", viewurl: "")
+
 
 struct MoodleHome_Previews: PreviewProvider {
     static var previews: some View {
-        MoodleHome()
+        MoodleHome(courseList: test_course_list)
     }
 }
 
