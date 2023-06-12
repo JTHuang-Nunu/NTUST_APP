@@ -78,10 +78,10 @@ struct CalendarDay: Codable {
 }
 
 
-class MoodleManager {
+class MoodleManager: ObservableObject {
     var host_ip = "127.0.0.1:8004"
     var userid: Int = 0
-    var login_status = false
+    @Published var login_status = false
     
     // 建立 Singleton
     static let shared = MoodleManager()

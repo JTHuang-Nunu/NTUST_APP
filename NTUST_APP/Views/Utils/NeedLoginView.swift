@@ -7,27 +7,22 @@
 
 import SwiftUI
 
-class LoginStatus: ObservableObject {
-    @Published var isLoginMoodle: Bool = MoodleManager.shared.login_status
-    @Published var isLoginNTUST: Bool = NTUSTSystemManager.shared.login_status
-}
-
 struct NeedLoginView: View {
     let RequireLoginType: LoginType
     let action: () -> Void
-    
-    @EnvironmentObject var loginStatus: LoginStatus
+    @StateObject var moodleManager = MoodleManager.shared
+    @StateObject var NTUSTManager = NTUSTSystemManager.shared
 
     var body: some View {
         switch RequireLoginType{
         case .Moodle:
-            if loginStatus.isLoginMoodle {
+            if moodleManager.login_status {
                 EmptyView()
             } else {
                 MoodleRequireView
             }
         case .NTUST:
-            if loginStatus.isLoginNTUST {
+            if NTUSTManager.login_status {
                 EmptyView()
             } else {
                 NTUSTRequireView
@@ -85,7 +80,6 @@ struct NeedLoginView_Previews: PreviewProvider {
         NeedLoginView(RequireLoginType: .Moodle){
             print("press 登入")
         }
-            .environmentObject(LoginStatus())
     
     }
 }

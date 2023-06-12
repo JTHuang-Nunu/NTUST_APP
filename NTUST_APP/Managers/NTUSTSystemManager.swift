@@ -42,10 +42,10 @@ struct CourseTableRow: Codable {
 
 
 
-class NTUSTSystemManager{
+class NTUSTSystemManager: ObservableObject{
     var host_ip = "192.168.137.137:5000"
     var userid: Int = 0
-    var login_status = false
+    @Published var login_status = false
     
     //Ntust System Manager Singleton
     static let shared = NTUSTSystemManager()

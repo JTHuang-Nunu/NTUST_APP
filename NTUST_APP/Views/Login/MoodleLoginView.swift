@@ -6,66 +6,42 @@
 //
 
 import SwiftUI
-
-enum AlertType: Identifiable {
-    case loginSuccess
-    case loginFailure
-    
-    var id: AlertType { self }
+class AlertInfo: Identifiable {
+    let id = UUID()
+    let title: String
+    let message: String
+    init(title: String, message: String) {
+        self.title = title
+        self.message = message
+    }
 }
 
 struct MoodleLoginView: View {
-    @Binding var isLoggedIn: Bool
+    @Environment(\.dismiss) var dismiss
+    @State private var loginSuccess: Bool = false
+    @StateObject private var loginState = LoginState()
+    @State private var showAlert: AlertInfo? = nil
     
-    @State private var account: String = ""
-    @State private var password: String = ""
-    @State private var isLoading = false
-    @State private var alertType: AlertType? = nil
-    
-    init(isLoggedIn: Binding<Bool> = .constant(false)) {
-        self._isLoggedIn = isLoggedIn
-    }
     
     var body: some View {
         VStack {
             Spacer()
             IconTitle
             Spacer()
-            loginField
+            if loginSuccess{
+                LoginCompleteView()
+            }else{
+                loginField
+            }
             Spacer()
         }
-        .overlay(
-            Group {
-                if isLoading {
-                    VStack {
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                        
-                        Text("登入中...")
-                            .foregroundColor(.white)
-                            .padding(.top, 10)
-                    }
-                    .padding()
-                    .background(Color.black)
-                    .cornerRadius(10)
-                }
-            }
-        )
-        .alert(item: $alertType) { alertType in
-            switch alertType {
-            case .loginSuccess:
-                return Alert(
-                    title: Text("登入成功"),
-                    message: Text("歡迎回來 \(account)"),
-                    dismissButton: .default(Text("確定"))
-                )
-            case .loginFailure:
-                return Alert(
-                    title: Text("登入失败"),
-                    message: Text(errorMessage()),
-                    dismissButton: .default(Text("確定"))
-                )
-            }
+        .alert(item: $showAlert) { alertType in
+            Alert(
+                title: Text(alertType.title),
+                message: Text(alertType.message),
+                dismissButton: .default(Text("確定"))
+            )
+
         }
 
     }
@@ -89,52 +65,39 @@ struct MoodleLoginView: View {
     var loginField: some View {
         
         LoginBlock{ account, password in
-            self.account = account
-            self.password = password
+            loginState.isTryingLogin = true
             print("Login Button Pressed")
             //收起小鍵盤
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
             
-            
-            
             if account.isEmpty || password.isEmpty
             {
-                alertType = .loginFailure
+                showAlert = loginFailedAlert
+                loginState.isTryingLogin = false
                 return
             }
             
-            isLoading = true
+            
             MoodleManager.shared.Login(Account: account, Password: password) { success in
                 if success {
-                    // 登入成功
-                    print("Login successful")
-                    alertType = .loginSuccess
-                    isLoggedIn = true
-                    
-                    //MoodleManager.shared.Test()
+                    loginSuccess = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+                        dismiss()
+                    }
                 } else {
                     // 登入失敗
-                    print("Login failed")
-                    alertType = .loginFailure
+                    showAlert = loginFailedAlert
                 }
                 
-                isLoading = false
+                loginState.isTryingLogin = false
             }
         }
-        .disabled(isLoading)
+        .environmentObject(loginState)
+    }
+    var loginFailedAlert: AlertInfo{
+        AlertInfo(title: "登入失败", message: "請檢查帳號密碼")
     }
     
-    func errorMessage() -> String {
-        if account.isEmpty && password.isEmpty {
-            return "帳號和密碼皆為空"
-        } else if account.isEmpty {
-            return "帳號為空"
-        } else if password.isEmpty {
-            return "密碼為空"
-        } else {
-            return "請檢查您的帳號和密碼。"
-        }
-    }
 }
 
 struct MoodleLoginView_Previews: PreviewProvider {

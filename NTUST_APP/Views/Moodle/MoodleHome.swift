@@ -11,19 +11,18 @@ import os
 struct MoodleHome: View {
     @State var courseList: [Courses] = []
     @State var showLoginView = false
-    @State var loginState: LoginStatus = LoginStatus()
+    @StateObject var moodleManager = MoodleManager.shared
     private let logger = Logger(subsystem: "Moodle", category: "MoodleHome")
     
     var body: some View {
         NavigationStack{
             Group{
-                if loginState.isLoginMoodle{
+                if moodleManager.login_status{
                     mainBody
                 }else{
                     NeedLoginView(RequireLoginType: .Moodle){
                         showLoginView = true
                     }
-                    .environmentObject(loginState)
                 }
                 
             }
