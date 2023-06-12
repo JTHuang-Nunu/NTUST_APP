@@ -43,20 +43,6 @@ struct HomeView: View {
             
         }
     }
-    
-    var AvatarIcon: some View{
-        Button{
-            isPresented = true
-        }label: {
-            Image(systemName: "person.crop.circle")
-                .resizable()
-                .frame(width: 50, height: 50)
-                .clipShape(Circle())
-                .overlay(Circle().stroke(Color.white, lineWidth: 4))
-                .shadow(radius: 10)
-                .padding()
-        }
-    }
     let columns = Array(repeating: GridItem(.adaptive(minimum: 200)), count: 2)
     var CardGrid: some View{
         ZStack{

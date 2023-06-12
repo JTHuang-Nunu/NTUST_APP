@@ -28,6 +28,7 @@ struct ScoreView: View{
         .sheet(isPresented: $showLoginView){
             LoginView(loginType: .NTUST)
         }
+        .navigationTitle("學期成績")
     }
     
     
