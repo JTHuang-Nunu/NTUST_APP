@@ -8,13 +8,43 @@ struct Announcement: Identifiable {
     var content: String
 }
 
+struct LoadBulletinView: View{
+    
+    @State var announcements: [Announcement]? = nil
+    
+    
+    var body: some View{
+        Group{
+            if announcements == nil{
+                ProgressView()
+            }else{
+                BulletinView(announcements: announcements!)
+            }
+        }
+        .task{
+            loadAnnouncements()
+        }
+    }
+    func loadAnnouncements(){
+        NTUSTSystemManager.shared.GetNtustBulletinBoard{ success, news in
+            if success{
+                var announcements: [Announcement] = []
+                for i in 0..<news.count{
+                    announcements.append(Announcement(title: news[i].title, time: news[i].date, content: ""))
+                }
+                announcements = announcements.reversed()
+            }else{
+                print("公告載入失敗")
+                announcements = nil
+            }
+        }
+    }
+    
+}
+
 struct BulletinView: View {
     @State private var searchText = ""
-    let announcements: [Announcement] = [
-        Announcement(title: "公告1", time: "2023-06-12 10:00", content: "這是公告1的內容。"),
-        Announcement(title: "公告2", time: "2023-06-11 15:30", content: "這是公告2的內容。"),
-        Announcement(title: "公告3", time: "2023-06-10 09:45", content: "這是公告3的內容。")
-    ]
+    @State var announcements: [Announcement]
 
     var filteredAnnouncements: [Announcement] {
         if searchText.isEmpty {
@@ -121,6 +151,6 @@ struct SearchBar: UIViewRepresentable {
 
 struct Bulletin_Previews: PreviewProvider {
     static var previews: some View {
-        BulletinView()
+        BulletinView(announcements: [])
     }
 }

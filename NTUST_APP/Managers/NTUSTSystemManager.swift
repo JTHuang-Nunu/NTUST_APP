@@ -261,7 +261,7 @@ class NTUSTSystemManager: ObservableObject{
     
     public func GetNtustBulletinBoard(completion: @escaping (Bool, [News]) -> Void) {
         // API的URL
-        let url = URL(string: "http://\(host_ip)/api/get_bulletin_board_page")!
+        let url = URL(string: "http://\(host_ip)/test")!
         
         var request = URLRequest(url: url)
         
