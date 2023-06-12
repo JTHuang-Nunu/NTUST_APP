@@ -15,7 +15,7 @@ struct LoadBulletinView: View{
     
     var body: some View{
         NavigationStack {
-            VStack{
+            Group{
                 if let announcements = announcements{
                     BulletinView(announcements: announcements)
                 }
@@ -26,7 +26,7 @@ struct LoadBulletinView: View{
             .task{
                 loadAnnouncements()
             }
-            .navigationTitle("公布欄")
+            .navigationTitle("佈告欄")
         
         }
     }
