@@ -7,9 +7,16 @@
 
 import SwiftUI
 
+class LoginState: ObservableObject {
+    @Published var isTryingLogin = false
+}
+
+
 struct LoginBlock: View {
     @State private var account: String = ""
     @State private var password: String = ""
+    @EnvironmentObject var loginState: LoginState
+    
     public let action: (String, String) -> Void
     var body: some View {
         VStack {
@@ -26,20 +33,30 @@ struct LoginBlock: View {
                 .padding(.horizontal, 20)
                 .padding(.bottom, 20)
             LoginButton
+                .disabled(loginState.isTryingLogin)
         }
     }
     var LoginButton: some View {
         Button{
             action(account, password)
         }label: {
-            Text("登入")
-                .font(.system(size: 20))
-                .bold()
-                .foregroundColor(.white)
-                .padding(.vertical, 10)
-                .frame(width: 200, height: 50)
-                .background(Color(.systemBlue))
-                .cornerRadius(10)
+            if loginState.isTryingLogin{
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                    .frame(width: 200, height: 50)
+                    .background(Color(.systemBlue))
+                    .cornerRadius(10)
+            }
+            else{
+                Text("登入")
+                    .font(.system(size: 20))
+                    .bold()
+                    .foregroundColor(.white)
+                    .padding(.vertical, 10)
+                    .frame(width: 200, height: 50)
+                    .background(Color(.systemBlue))
+                    .cornerRadius(10)
+            }
         }
     }
 
@@ -51,5 +68,6 @@ struct LoginBlock_Previews: PreviewProvider {
             
             print("Login Button Pressed")
         }
+        .environmentObject(LoginState())
     }
 }
