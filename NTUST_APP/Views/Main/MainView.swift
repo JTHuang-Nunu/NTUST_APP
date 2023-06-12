@@ -23,7 +23,7 @@ struct MainView: View {
                 .tabItem {
                     Label("Moodle", systemImage: "book")
                 }
-            Bulletin()
+            BulletinView()
                 .tabItem{
                     Label("公布欄", systemImage: "newspaper")
                 }
