@@ -1,70 +1,121 @@
-//
-//  Bulletin.swift
-//  NTUST_APP
-//
-//  Created by Jimmy on 2023/6/12.
-//
-
 import SwiftUI
+import UIKit
 
 struct Announcement: Identifiable {
     let id = UUID()
-    let title: String
-    let time: String
-    let content: String
+    var title: String
+    var time: String
+    var content: String
 }
 
 struct BulletinView: View {
-    @State private var isShowingContent = false
+    @State private var searchText = ""
     let announcements: [Announcement] = [
         Announcement(title: "公告1", time: "2023-06-12 10:00", content: "這是公告1的內容。"),
         Announcement(title: "公告2", time: "2023-06-11 15:30", content: "這是公告2的內容。"),
         Announcement(title: "公告3", time: "2023-06-10 09:45", content: "這是公告3的內容。")
     ]
-    
+
+    var filteredAnnouncements: [Announcement] {
+        if searchText.isEmpty {
+            return announcements
+        } else {
+            return announcements.filter { announcement in
+                let announcementText = "\(announcement.title) \(announcement.time) \(announcement.content)"
+                return announcementText.localizedCaseInsensitiveContains(searchText)
+            }
+        }
+    }
+
     var body: some View {
         NavigationView {
-            List(announcements) { announcement in
-                VStack(alignment: .leading) {
-                    Text(announcement.title)
-                        .font(.headline)
-                    Text(announcement.time)
-                        .font(.subheadline)
-                    Button(action: {
-                        isShowingContent = true
-                    }) {
-                        Text("查看內文")
+            VStack {
+                SearchBar(text: $searchText)
+                    .padding(.horizontal)
+
+                List(filteredAnnouncements) { announcement in
+                    NavigationLink(destination: AnnouncementContentView(announcement: announcement)) {
+                        VStack(alignment: .leading) {
+                            Text(announcement.title)
+                                .font(.title2)
+                                .foregroundColor(.primary)
+
+                            Text(announcement.time)
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                        }
                     }
+                    .padding(.vertical, 8)
                 }
+                .navigationTitle("公布欄")
             }
-            .navigationTitle("公布欄")
-        }
-        .sheet(isPresented: $isShowingContent) {
-            AnnouncementContentView(isPresented: $isShowingContent)
         }
     }
 }
 
 struct AnnouncementContentView: View {
-    @Binding var isPresented: Bool
-    
+    let announcement: Announcement
+
     var body: some View {
-        VStack {
-            Text("內文")
-                .font(.title)
-                .padding()
-            
-            Text("這是公告內文的詳細內容。")
-                .padding()
-            
-            Button(action: {
-                isPresented = false
-            }) {
-                Text("關閉")
-                    .font(.headline)
+        ScrollView {
+            VStack {
+                Text(announcement.title)
+                    .font(.title)
+                    .padding()
+
+                Text(announcement.time)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    .padding()
+
+                Text(announcement.content)
+                    .font(.body)
+                    .padding()
             }
-            .padding()
         }
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+
+struct SearchBar: UIViewRepresentable {
+    @Binding var text: String
+
+    class Coordinator: NSObject, UISearchBarDelegate {
+        @Binding var text: String
+        let searchBar: UISearchBar
+
+        init(text: Binding<String>, searchBar: UISearchBar) {
+            _text = text
+            self.searchBar = searchBar
+        }
+
+        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+            text = searchText
+        }
+
+        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+            searchBar.resignFirstResponder()
+        }
+
+        func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+            searchBar.resignFirstResponder()
+        }
+    }
+
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(text: $text, searchBar: UISearchBar())
+    }
+
+    func makeUIView(context: Context) -> UISearchBar {
+        let searchBar = context.coordinator.searchBar
+        searchBar.delegate = context.coordinator
+        searchBar.showsCancelButton = true
+        return searchBar
+    }
+
+    func updateUIView(_ uiView: UISearchBar, context: Context) {
+        uiView.text = text
     }
 }
 
