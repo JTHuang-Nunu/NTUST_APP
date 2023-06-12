@@ -31,7 +31,6 @@ struct MainView: View {
                 .tabItem {
                     Label("設定", systemImage: "gearshape")
                 }
-        
         }
     }
 }

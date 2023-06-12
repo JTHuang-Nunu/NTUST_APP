@@ -39,6 +39,17 @@ struct CourseTableRow: Codable {
     let Period: String
 }
 
+struct BulletinResponse: Codable {
+    let data: [News]
+    let result: String
+}
+
+struct News: Codable {
+    let date: String
+    let title: String
+    let url: String
+}
+
 
 
 
@@ -247,6 +258,50 @@ class NTUSTSystemManager: ObservableObject{
         
         task.resume()
     }
+    
+    public func GetNtustBulletinBoard(completion: @escaping (Bool, [News]) -> Void) {
+        // API的URL
+        let url = URL(string: "http://\(host_ip)/api/get_bulletin_board_page")!
+        
+        var request = URLRequest(url: url)
+        
+        request.httpMethod = "GET"
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print("請求錯誤：\(error.localizedDescription)")
+                completion(false, [])
+                return
+            }
+            
+            // 檢查回應
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200...299).contains(httpResponse.statusCode) else {
+                print("錯誤的Server錯誤")
+                completion(false, [])
+                return
+            }
+            
+            // 檢查data
+            guard let data = data else {
+                print("沒有回傳資料")
+                completion(false, [])
+                return
+            }
+            
+            // 解析数据为BulletinResponse结构
+            do {
+                let decoder = JSONDecoder()
+                let result = try decoder.decode(BulletinResponse.self, from: data)
+                completion(true, result.data)
+            } catch {
+                print("拆解json發生錯誤：\(error.localizedDescription)")
+                completion(false, [])
+            }
+        }.resume()
+    }
+
+    
     //不可同時執行 需註解一個
     public func Test() {
             
