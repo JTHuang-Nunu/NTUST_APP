@@ -14,7 +14,7 @@ struct Announcement: Identifiable {
     let content: String
 }
 
-struct Bulletin: View {
+struct BulletinView: View {
     @State private var isShowingContent = false
     let announcements: [Announcement] = [
         Announcement(title: "公告1", time: "2023-06-12 10:00", content: "這是公告1的內容。"),
@@ -70,6 +70,6 @@ struct AnnouncementContentView: View {
 
 struct Bulletin_Previews: PreviewProvider {
     static var previews: some View {
-        Bulletin()
+        BulletinView()
     }
 }

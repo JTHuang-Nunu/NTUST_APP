@@ -14,7 +14,7 @@ struct NTUST_APP: App {
 
     var body: some Scene {
         WindowGroup {
-            MapView()
+            BulletinView()
         }
     }
 }
