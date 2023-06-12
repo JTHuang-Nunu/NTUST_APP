@@ -9,8 +9,50 @@ import SwiftUI
 
 struct SchoolTimeTable: View {
     var weekdays = ["星期一", "星期二", "星期三", "星期四", "星期五"]
-    var times = ["08:10", "09:00", "09:50", "10:40", "11:30", "12:20", "13:10", "14:00", "14:50", "15:40", "16:30", "17:20", "18:10"]
+    var times = ["08:10", "09:10", "10:20", "11:20", "12:20", "13:20", "14:20", "15:30", "16:30", "17:30", "18:25", "19:20", "20:15", "21:10"]
     @State private var showTimesColumn = false
+    @State private var tableRows: [CourseTableRow]? = nil
+    @StateObject private var moodleManager = MoodleManager.shared
+    @State private var showLoginView = false
+    
+        
+    var body: some View {
+        VStack {
+            Group{
+                if moodleManager.login_status{
+                    content
+                }else{
+                    NeedLoginView(RequireLoginType: .NTUST){
+                        showLoginView = true
+                    }
+                }
+            }
+            .sheet(isPresented: $showLoginView){
+                LoginView(loginType: .NTUST)
+            }
+            
+            
+        }
+        .navigationTitle("課表")
+        
+    }
+    var content: some View{
+        Group {
+            if tableRows == nil {
+                ProgressView()
+            } else {
+                ScrollView {
+                    getTimeTable(tableRows: tableRows!)
+                        .padding()
+                        
+                }
+            }
+        }
+        .task{
+            loadTimeTables()
+        }
+        
+    }
     var weekBar : some View{
         GridRow {
             if showTimesColumn{
@@ -24,25 +66,29 @@ struct SchoolTimeTable: View {
             }
         }
     }
+
     
-    var body: some View {
-        VStack {
-            ScrollView {
-                table
-                    .padding()
-                    
+    func loadTimeTables(){
+        NTUSTSystemManager.shared.GetNtustCourseTable{success, table in
+            if success{
+                self.tableRows = table
+                print(table)
+            }else{
+                print("Error loading time table")
+                self.tableRows = nil
+            
             }
         }
-        .navigationTitle("課表")
     }
-    
-    var table: some View {
-        Grid {
+    func getTimeTable(tableRows: [CourseTableRow]) -> some View{
+        print(tableRows.count)
+        print(tableRows[0])
+        return Grid {
             weekBar
-            ForEach(0..<times.count){ index in
+            ForEach(0..<tableRows.count){ i in
                 GridRow {
-                    timeLabel(time: times[index])
-                    daySections
+                    timeLabel(time: times[i])
+                    TableRow(row: tableRows[i])
                 }
                 
             }
@@ -60,7 +106,7 @@ struct SchoolTimeTable: View {
                     }
                 }
         )
-    
+
     }
     
     func timeLabel(time: String) -> some View {
@@ -73,38 +119,36 @@ struct SchoolTimeTable: View {
             }
         }
     }
+}
 
-    
-    var daySections: some View {
-        ForEach(0..<5) { index in
-            TimeTableUnit(CourseName: "資料庫", CoursePlace: "TR-313", BackFrameColor: .white)
+struct TableRow: View{
+    let row: CourseTableRow
+    var body: some View{
+        let courses: [String] = [
+            row.Monday,
+            row.Tuesday,
+            row.Wednesday,
+            row.Thursday,
+            row.Friday
+        ]
+        ForEach(0..<5) { i in
+            let (sectionName, placeName) = parseCourseFullName(fullName: courses[i])
+            TimeTableUnit(CourseName: sectionName, CoursePlace: placeName, BackFrameColor: .white)
+        }
+    }
+    func parseCourseFullName(fullName: String) -> (courseName: String, classroom: String) {
+        let pattern = #"^(.*?)\s?([A-Za-z]+-[0-9]+-[0-9]+)$"#
+        
+        if let range = fullName.range(of: pattern, options: .regularExpression) {
+            let courseName = String(fullName[range.lowerBound..<range.upperBound])
+            let classroom = String(fullName[range.upperBound...])
             
+            return (courseName.trimmingCharacters(in: .whitespaces), classroom)
         }
+        
+        return ("", "")
     }
 }
-
-struct SectionInfo{
-    var CourseName: String = ""
-    var CoursePlace: String = ""
-}
-struct DaySections{
-    var DaySections: [Int:SectionInfo] = [:]
-    init(){
-        for i in 0..<13{
-            DaySections[i] = SectionInfo()
-        }
-    }
-
-}
-struct WeekSections{
-    var WeekSections: [Int:DaySections] = [:]
-    init(){
-        for i in 0..<5{
-            WeekSections[i] = DaySections()
-        }
-    }
-}
-
 
 struct SchoolTimeTable_Previews: PreviewProvider {
     static var previews: some View {
