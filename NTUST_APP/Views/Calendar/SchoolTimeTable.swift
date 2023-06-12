@@ -12,14 +12,14 @@ struct SchoolTimeTable: View {
     var times = ["08:10", "09:10", "10:20", "11:20", "12:20", "13:20", "14:20", "15:30", "16:30", "17:30", "18:25", "19:20", "20:15", "21:10"]
     @State private var showTimesColumn = false
     @State private var tableRows: [CourseTableRow]? = nil
-    @StateObject private var moodleManager = MoodleManager.shared
+    @StateObject private var ntustSystemManager = NTUSTSystemManager.shared
     @State private var showLoginView = false
     
         
     var body: some View {
         VStack {
             Group{
-                if moodleManager.login_status{
+                if ntustSystemManager.login_status{
                     content
                 }else{
                     NeedLoginView(RequireLoginType: .NTUST){
@@ -81,8 +81,6 @@ struct SchoolTimeTable: View {
         }
     }
     func getTimeTable(tableRows: [CourseTableRow]) -> some View{
-        print(tableRows.count)
-        print(tableRows[0])
         return Grid {
             weekBar
             ForEach(0..<tableRows.count){ i in
@@ -137,17 +135,17 @@ struct TableRow: View{
         }
     }
     func parseCourseFullName(fullName: String) -> (courseName: String, classroom: String) {
-        let pattern = #"^(.*?)\s?([A-Za-z]+-[0-9]+-[0-9]+)$"#
+        let pattern = #"([A-Za-z]{2}-\d+)"#
         
         if let range = fullName.range(of: pattern, options: .regularExpression) {
-            let courseName = String(fullName[range.lowerBound..<range.upperBound])
-            let classroom = String(fullName[range.upperBound...])
-            
-            return (courseName.trimmingCharacters(in: .whitespaces), classroom)
+            let courseName = fullName[..<range.lowerBound].trimmingCharacters(in: .whitespacesAndNewlines)
+            let classroom = fullName[range].trimmingCharacters(in: .whitespacesAndNewlines)
+            return (courseName, classroom)
         }
         
         return ("", "")
     }
+
 }
 
 struct SchoolTimeTable_Previews: PreviewProvider {

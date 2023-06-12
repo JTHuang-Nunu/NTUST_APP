@@ -16,25 +16,25 @@ struct TimeTableUnit: View {
     var body: some View {
         
         ZStack{
-            RoundedRectangle(cornerRadius: 5)
+            RoundedRectangle(cornerRadius: 2)
                 .stroke(Color.gray, lineWidth: 1)
                 .foregroundColor(BackFrameColor)
                 .shadow(color: .gray, radius: 3, x: 0, y: 0)
             
             VStack{
                 Text(CourseName)
-                    .font(.body)
+                    .font(.headline)
                     .fontWeight(.bold)
-                    .padding(.top)
+                    .padding(.top, 5)
                 Spacer()
                 
                 Text(CoursePlace)
                     .font(.caption2)
                     .fontWeight(.thin)
-                    .padding(.bottom)
+                    .padding(.bottom, 5)
             }
         }
-        .frame(width: 60, height: 80)
+        .frame(minWidth: 60, maxWidth: 100, minHeight: 80, maxHeight: 140)
     
     
     
@@ -43,6 +43,6 @@ struct TimeTableUnit: View {
 
 struct TimeTableUnit_Previews: PreviewProvider {
     static var previews: some View {
-        TimeTableUnit(CourseName: "資料庫", CoursePlace: "TR-313", BackFrameColor: .white)
+        TimeTableUnit(CourseName: "資料庫系統編譯器", CoursePlace: "TR-313", BackFrameColor: .blue)
     }
 }
