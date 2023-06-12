@@ -32,18 +32,12 @@ struct HomeView: View {
     @State var isPresented = false
     
     var body: some View {
-        NavigationView{
+        NavigationStack{
             VStack{
                 CardGrid
-                    
             }
-            .overlay{
-                NavigationBar(title: "Home")
-            }
-            .overlay{
-                AvatarIcon
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
-            }.sheet(isPresented: $isPresented, content: {
+            .navigationTitle("Home")
+            .sheet(isPresented: $isPresented, content: {
                 Text("Profile")
             })
             
@@ -67,34 +61,27 @@ struct HomeView: View {
     var CardGrid: some View{
         ZStack{
             ScrollView{
-                LazyVGrid(columns: columns){
-                    Card(IconName: "house", Title: "Home"){
-                        handleCardTap("Home")
-                    }
-                    Card(IconName: "book", Title: "Course"){
-                        handleCardTap("Course")
-                    }
-                    Card(IconName: "calendar", Title: "Calendar"){
-                        handleCardTap("Calendar")
-                    }
-                    Card(IconName: "person.3", Title: "Club"){
-                        handleCardTap("Club")
-                    }
-                    Card(IconName: "person", Title: "Teacher"){
-                        handleCardTap("Teacher")
-                    }
-                    Card(IconName: "person.2", Title: "Student"){
-                        handleCardTap("Student")
-                    }
-                    Card(IconName: "paperplane", Title: "Test"){
-                        handleCardTap("Test")
-                        
+                Grid{
+                    ForEach(Array(CardGridMap.keys), id: \.self) { key in
+                        if let card1 = CardGridMap[key]?.0, let card2 = CardGridMap[key]?.1 {
+                            GridRow {
+                                NavigationLink(destination: card2) {
+                                    card1
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
         
     }
+    let CardGridMap: [String: (AnyView, AnyView)] = [
+        "學校地圖": (AnyView(Card(IconName: "map", Title: "學校地圖")), AnyView(MapView())),
+        "成績": (AnyView(Card(IconName: "book", Title: "成績")), AnyView(ScoreView(scores: [])))
+    ]
+
+        
     
     //處理按鈕點擊
     func handleCardTap(_ title: String) {

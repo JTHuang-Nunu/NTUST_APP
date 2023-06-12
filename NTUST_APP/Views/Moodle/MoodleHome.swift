@@ -10,6 +10,7 @@ import os
 
 struct MoodleHome: View {
     @State var courseList: [Courses] = []
+    @State var showLoginView = false
     
     private let logger = Logger(subsystem: "Moodle", category: "MoodleHome")
     
@@ -22,6 +23,14 @@ struct MoodleHome: View {
                     }
             }
             .navigationTitle("Moodle")
+        }
+        .onAppear{
+            if !MoodleManager.shared.login_status{
+                showLoginView = true
+            }
+        }
+        .sheet(isPresented: $showLoginView){
+            LoginView(loginType: .Moodle)
         }
         .padding()
     }

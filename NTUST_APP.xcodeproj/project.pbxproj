@@ -18,16 +18,19 @@
 		D8CB13A92A0D2E9E00BFB673 /* NTUST_APP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8CB13A72A0D2E9E00BFB673 /* NTUST_APP.xcdatamodeld */; };
 		E712FBE42A27C0F8005282AE /* SchoolTimeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E712FBE32A27C0F8005282AE /* SchoolTimeTable.swift */; };
 		E712FBE62A27C37F005282AE /* TimeTableUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E712FBE52A27C37F005282AE /* TimeTableUnit.swift */; };
-		E712FBEF2A28689C005282AE /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E712FBEE2A28689C005282AE /* LoginManager.swift */; };
 		E772E5612A3215ED004CCCA8 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E772E5602A3215ED004CCCA8 /* AccountView.swift */; };
 		E772E5642A321798004CCCA8 /* MoodleHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = E772E5632A321798004CCCA8 /* MoodleHome.swift */; };
 		E772E5662A321815004CCCA8 /* CourseCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E772E5652A321815004CCCA8 /* CourseCard.swift */; };
 		E772E5682A3224A6004CCCA8 /* CourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E772E5672A3224A6004CCCA8 /* CourseView.swift */; };
 		E772E56A2A323A54004CCCA8 /* SectionTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E772E5692A323A54004CCCA8 /* SectionTabView.swift */; };
 		E77717342A35E8C200A914F1 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77717332A35E8C200A914F1 /* MainView.swift */; };
+		E77717362A36140200A914F1 /* MoodleLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77717352A36140200A914F1 /* MoodleLoginView.swift */; };
+		E77717382A36141700A914F1 /* NTUSTLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77717372A36141700A914F1 /* NTUSTLoginView.swift */; };
+		E777173A2A36168700A914F1 /* LoginBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77717392A36168700A914F1 /* LoginBlock.swift */; };
+		E777173F2A36278900A914F1 /* NeedLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E777173E2A36278900A914F1 /* NeedLoginView.swift */; };
+		E77717412A3628D300A914F1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77717402A3628D300A914F1 /* LoginView.swift */; };
 		E778647C2A2B5D4300280EBF /* MoodleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E778647B2A2B5D4300280EBF /* MoodleManager.swift */; };
 		E778647E2A2B5F4200280EBF /* NTUSTSystemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E778647D2A2B5F4200280EBF /* NTUSTSystemManager.swift */; };
-		E78A810A2A271B9E005497F1 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78A81092A271B9E005497F1 /* LoginView.swift */; };
 		E78A810C2A27230B005497F1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78A810B2A27230B005497F1 /* HomeView.swift */; };
 		E78F28872A33486200E32171 /* YoubikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78F28862A33486200E32171 /* YoubikeView.swift */; };
 		E7C443192A2737FC00E9040F /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C443182A2737FC00E9040F /* Card.swift */; };
@@ -67,16 +70,19 @@
 		D8CB13B82A0D2E9E00BFB673 /* NTUST_APPUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NTUST_APPUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E712FBE32A27C0F8005282AE /* SchoolTimeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolTimeTable.swift; sourceTree = "<group>"; };
 		E712FBE52A27C37F005282AE /* TimeTableUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableUnit.swift; sourceTree = "<group>"; };
-		E712FBEE2A28689C005282AE /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		E772E5602A3215ED004CCCA8 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		E772E5632A321798004CCCA8 /* MoodleHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodleHome.swift; sourceTree = "<group>"; };
 		E772E5652A321815004CCCA8 /* CourseCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCard.swift; sourceTree = "<group>"; };
 		E772E5672A3224A6004CCCA8 /* CourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseView.swift; sourceTree = "<group>"; };
 		E772E5692A323A54004CCCA8 /* SectionTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTabView.swift; sourceTree = "<group>"; };
 		E77717332A35E8C200A914F1 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		E77717352A36140200A914F1 /* MoodleLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodleLoginView.swift; sourceTree = "<group>"; };
+		E77717372A36141700A914F1 /* NTUSTLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTUSTLoginView.swift; sourceTree = "<group>"; };
+		E77717392A36168700A914F1 /* LoginBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginBlock.swift; sourceTree = "<group>"; };
+		E777173E2A36278900A914F1 /* NeedLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeedLoginView.swift; sourceTree = "<group>"; };
+		E77717402A3628D300A914F1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E778647B2A2B5D4300280EBF /* MoodleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodleManager.swift; sourceTree = "<group>"; };
 		E778647D2A2B5F4200280EBF /* NTUSTSystemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTUSTSystemManager.swift; sourceTree = "<group>"; };
-		E78A81092A271B9E005497F1 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E78A810B2A27230B005497F1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E78F28862A33486200E32171 /* YoubikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoubikeView.swift; sourceTree = "<group>"; };
 		E7C443182A2737FC00E9040F /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -171,8 +177,10 @@
 		E712FBEC2A286811005282AE /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				E78A81092A271B9E005497F1 /* LoginView.swift */,
-				E712FBEE2A28689C005282AE /* LoginManager.swift */,
+				E77717352A36140200A914F1 /* MoodleLoginView.swift */,
+				E77717372A36141700A914F1 /* NTUSTLoginView.swift */,
+				E77717392A36168700A914F1 /* LoginBlock.swift */,
+				E77717402A3628D300A914F1 /* LoginView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -234,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				E7FE29042A2A598A0057A1A1 /* NavigationBar.swift */,
+				E777173E2A36278900A914F1 /* NeedLoginView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -391,22 +400,25 @@
 				E778647E2A2B5F4200280EBF /* NTUSTSystemManager.swift in Sources */,
 				E712FBE62A27C37F005282AE /* TimeTableUnit.swift in Sources */,
 				E772E5662A321815004CCCA8 /* CourseCard.swift in Sources */,
+				E77717382A36141700A914F1 /* NTUSTLoginView.swift in Sources */,
 				E772E5612A3215ED004CCCA8 /* AccountView.swift in Sources */,
 				D8CB13A92A0D2E9E00BFB673 /* NTUST_APP.xcdatamodeld in Sources */,
 				E77717342A35E8C200A914F1 /* MainView.swift in Sources */,
 				BFB803B92A34BE610011F454 /* ScoreView.swift in Sources */,
 				E78A810C2A27230B005497F1 /* HomeView.swift in Sources */,
 				BFB803BB2A355DB20011F454 /* MapView.swift in Sources */,
+				E777173A2A36168700A914F1 /* LoginBlock.swift in Sources */,
 				E7C443192A2737FC00E9040F /* Card.swift in Sources */,
 				D8CB13A62A0D2E9E00BFB673 /* Persistence.swift in Sources */,
 				E7FE29052A2A598A0057A1A1 /* NavigationBar.swift in Sources */,
-				E712FBEF2A28689C005282AE /* LoginManager.swift in Sources */,
 				E772E56A2A323A54004CCCA8 /* SectionTabView.swift in Sources */,
+				E777173F2A36278900A914F1 /* NeedLoginView.swift in Sources */,
 				E7FE290A2A2A640D0057A1A1 /* SettingView.swift in Sources */,
 				E772E5682A3224A6004CCCA8 /* CourseView.swift in Sources */,
 				D8CB139F2A0D2E9B00BFB673 /* ContentView.swift in Sources */,
-				E78A810A2A271B9E005497F1 /* LoginView.swift in Sources */,
+				E77717412A3628D300A914F1 /* LoginView.swift in Sources */,
 				BFB803B62A334C3C0011F454 /* YouBikeManager.swift in Sources */,
+				E77717362A36140200A914F1 /* MoodleLoginView.swift in Sources */,
 				D8CB139D2A0D2E9B00BFB673 /* NTUST_APP.swift in Sources */,
 				E712FBE42A27C0F8005282AE /* SchoolTimeTable.swift in Sources */,
 				E772E5642A321798004CCCA8 /* MoodleHome.swift in Sources */,

@@ -23,10 +23,6 @@ struct MainView: View {
                 .tabItem {
                     Label("Moodle", systemImage: "book")
                 }
-            LoginView()
-                .tabItem {
-                    Label("登入", systemImage: "person.crop.circle")
-                }
             SettingView()
                 .tabItem {
                     Label("設定", systemImage: "gearshape")
