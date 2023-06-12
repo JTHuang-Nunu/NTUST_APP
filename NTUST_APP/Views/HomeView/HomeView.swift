@@ -71,7 +71,7 @@ struct HomeView: View {
         ],
         [
         (AnyView(Card(IconName: "bicycle", Title: "YouBike資訊")), AnyView(MapView())),
-        (AnyView(Card(IconName: "calendar", Title: "課表")), AnyView(ScoreListView(scores: [])))
+        (AnyView(Card(IconName: "calendar", Title: "課表")), AnyView(SchoolTimeTable()))
         ],
     ]
 
