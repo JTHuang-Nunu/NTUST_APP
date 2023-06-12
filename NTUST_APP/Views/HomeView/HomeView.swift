@@ -7,27 +7,6 @@
 
 import SwiftUI
 
-//NTUST 附近的站點
-var ntust_sno:[String] = ["500101024", "500101025", "500101026", "500101027", "500101028"]
-
-/*
- "sno": "500101024",
- "sna": "YouBike2.0_臺灣科技大學正門",
-
- "sno": "500101025",
- "sna": "YouBike2.0_臺灣科技大學側門",
-
- "sno": "500101026",
- "sna": "YouBike2.0_公館公園",
-
- "sno": "500101027",
- "sna": "YouBike2.0_臺灣科技大學後門",
-
- "sno": "500101028",
- "sna": "YouBike2.0_臺大醫學院附設癌醫中心",
- */
-
-
 struct HomeView: View {
     @State var isPresented = false
     
@@ -70,8 +49,8 @@ struct HomeView: View {
         (AnyView(Card(IconName: "book", Title: "成績")), AnyView(ScoreView()))
         ],
         [
-        (AnyView(Card(IconName: "bicycle", Title: "YouBike資訊")), AnyView(MapView())),
-        (AnyView(Card(IconName: "calendar", Title: "課表")), AnyView(SchoolTimeTable()))
+        (AnyView(Card(IconName: "bicycle", Title: "YouBike資訊")), AnyView(YoubikeView())),
+        (AnyView(Card(IconName: "calendar", Title: "課表")), AnyView(ScoreListView(scores: [])))
         ],
     ]
 
