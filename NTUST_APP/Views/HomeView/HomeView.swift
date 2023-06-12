@@ -81,56 +81,15 @@ struct HomeView: View {
     [
         [
         (AnyView(Card(IconName: "map", Title: "學校地圖")), AnyView(MapView())),
-        (AnyView(Card(IconName: "book", Title: "成績")), AnyView(ScoreView(scores: [])))
+        (AnyView(Card(IconName: "book", Title: "成績")), AnyView(ScoreView()))
         ],
         [
         (AnyView(Card(IconName: "bicycle", Title: "YouBike資訊")), AnyView(MapView())),
-        (AnyView(Card(IconName: "calendar", Title: "課表")), AnyView(ScoreView(scores: [])))
+        (AnyView(Card(IconName: "calendar", Title: "課表")), AnyView(ScoreListView(scores: [])))
         ],
     ]
 
-        
-    
-    //處理按鈕點擊
-    func handleCardTap(_ title: String) {
-        print("Card tapped: \(title)")
-        switch title {
-        case "Home":
-            print("Handle Home action here")
-        case "Course":
-            print("Handle Course action here")
-        case "Calendar":
-            print("Handle Calendar action here")
-        case "Club":
-            print("Handle Club action here")
-        case "Teacher":
-            print("Handle Teacher action here")
-        case "Student":
-            print("Handle Student action here")
-        case "Test":
-            print("Handle Test action here")
-            
-            for sno in ntust_sno {
-                YouBikeManager.shared.GetBikeStationBySno(sno: sno) { station in
-                    if let station = station {
-                        // 存取成功，找到了符合站點代號的站點資料
-                        print("站點名稱：\(station.sna)")
-                        print("站點總停車格：\(station.tot)")
-                        print("目前可用車輛數量：\(station.sbi)")
-                        print("空位數量:\(station.bemp)")
-                    } else {
-                        // 存取失敗或找不到符合站點代號的站點資料
-                        print("存取失敗或找不到該站點")
-                    }
-                }
-            }
-            
 
-            
-        default:
-            print("Unknown title")
-        }
-    }
 }
 
 struct HomeView_Previews: PreviewProvider {

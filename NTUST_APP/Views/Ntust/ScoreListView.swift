@@ -6,8 +6,60 @@
 //
 
 import SwiftUI
+import os
 
-struct ScoreView: View {
+struct ScoreView: View{
+    @State var scores: [Score]? = nil
+    @StateObject var ntustManager = NTUSTSystemManager.shared
+    @State var showLoginView = false
+    
+    private let logger = Logger(subsystem: "NTUSTSystem", category: "ScoreView")
+    
+    var body: some View{
+        Group{
+            if ntustManager.login_status{
+                content
+            }else{
+                NeedLoginView(RequireLoginType: .NTUST){
+                    showLoginView = true
+                }
+            }
+        }
+        .sheet(isPresented: $showLoginView){
+            LoginView(loginType: .NTUST)
+        }
+    }
+    
+    
+    var content: some View{
+        Group{
+            if scores == nil{
+                ProgressView()
+                    .task{
+                        loadScores()
+                    }
+            }else{
+                ScoreListView(scores: scores!)
+            }
+        }
+        .navigationTitle("學期成績")
+    
+    }
+    
+    func loadScores(){
+        //assert (NTUSTSystemManager.shared.login_status)
+        NTUSTSystemManager.shared.GetNtustScore{ success, scores in
+            if success{
+                self.scores = scores
+            }else{
+                self.scores = nil
+                print("GetNtustScore Error")
+            }
+        }
+    }
+}
+
+struct ScoreListView: View {
     let scores: [Score]
     
     var body: some View {
@@ -64,12 +116,6 @@ struct CardView: View {
 
 struct ScoreView_Previews: PreviewProvider {
     static var previews: some View {
-        let scores = [
-            Score(academic_year: 1111, average_score: 3.65, average_score_cumulative: 3.38, class_rank: 22, class_rank_cumulative: 30, department_rank: 46, department_rank_cumulative: 64),
-            Score(academic_year: 1102, average_score: 3.83, average_score_cumulative: 3.36, class_rank: 23, class_rank_cumulative: 32, department_rank: 48, department_rank_cumulative: 66),
-            // 其他 Score 对象
-        ]
-
-        ScoreView(scores: scores)
+        ScoreView()
     }
 }
