@@ -81,6 +81,7 @@ struct MoodleLoginView: View {
             MoodleManager.shared.Login(Account: account, Password: password) { success in
                 if success {
                     loginSuccess = true
+                    loginState.isTryingLogin = false
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
                         dismiss()
                     }
@@ -89,7 +90,7 @@ struct MoodleLoginView: View {
                     showAlert = loginFailedAlert
                 }
                 
-                loginState.isTryingLogin = false
+                
             }
         }
         .environmentObject(loginState)

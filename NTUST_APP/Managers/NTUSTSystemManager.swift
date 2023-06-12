@@ -43,7 +43,7 @@ struct CourseTableRow: Codable {
 
 
 class NTUSTSystemManager: ObservableObject{
-    var host_ip = "192.168.137.137:5000"
+    var host_ip = "127.0.0.1:8004"
     var userid: Int = 0
     @Published var login_status = false
     
