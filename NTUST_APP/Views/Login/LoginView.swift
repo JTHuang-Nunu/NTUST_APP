@@ -13,7 +13,7 @@ enum LoginType {
 }
 
 struct LoginView: View {
-    let loginType: LoginType
+    @State var loginType: LoginType
     var body: some View {
         VStack{
             switch loginType {

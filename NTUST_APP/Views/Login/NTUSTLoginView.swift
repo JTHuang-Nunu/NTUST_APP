@@ -85,7 +85,7 @@ struct NTUSTLoginView: View {
         }
         
         
-        MoodleManager.shared.Login(Account: account, Password: password) { success in
+        NTUSTSystemManager.shared.Login(Account: account, Password: password) { success in
             if success {
                 withAnimation{
                     loginSuccess = true

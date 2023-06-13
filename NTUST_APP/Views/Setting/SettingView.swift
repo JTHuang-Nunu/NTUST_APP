@@ -22,8 +22,15 @@ struct SettingView: View {
             Section(header: Text("General")){
                 
                 Toggle(isOn: $UseFaceID, label: {
-                    Text("使用FaceID解鎖")
+                    HStack {
+                        Image(systemName: "faceid")
+                            .font(.title)
+                        Text("使用FaceID解鎖")
+                    }
                 })
+                NavigationLink(destination: AccountView()){
+                    Text("帳號")
+                }
                 
             }
         }
