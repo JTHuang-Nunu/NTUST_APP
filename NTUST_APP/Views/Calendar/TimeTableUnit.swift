@@ -16,10 +16,20 @@ struct TimeTableUnit: View {
     var body: some View {
         
         ZStack{
-            RoundedRectangle(cornerRadius: 2)
-                .stroke(Color.gray, lineWidth: 1)
-                .foregroundColor(BackFrameColor)
-                .shadow(color: .gray, radius: 3, x: 0, y: 0)
+            if CourseName == ""{
+                RoundedRectangle(cornerRadius: 2)
+                    .stroke(Color.gray, lineWidth: 1)
+                    .foregroundColor(BackFrameColor)
+                    .shadow(color: .gray, radius: 3, x: 0, y: 0)
+                    .opacity(0.3)
+                
+            }else{
+                RoundedRectangle(cornerRadius: 2)
+                    .stroke(Color.gray, lineWidth: 1)
+                    .foregroundColor(BackFrameColor)
+                    .shadow(color: .gray, radius: 3, x: 0, y: 0)
+            }
+            
             
             VStack{
                 Text(CourseName)
@@ -34,7 +44,7 @@ struct TimeTableUnit: View {
                     .padding(.bottom, 5)
             }
         }
-        .frame(minWidth: 60, maxWidth: 100, minHeight: 80, maxHeight: 140)
+        .frame(width: 60, height: 110)
     
     
     

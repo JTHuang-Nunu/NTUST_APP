@@ -73,7 +73,10 @@ struct MoodleLoginView: View {
         .environmentObject(loginState)
         .onAppear{
             if useFaceID{
-                authenticate()
+                let password = KeychainService.shared.retrivePassword(for: moodleAccount)
+                if password != nil{
+                    authenticate()
+                }
             }
         }
     }
