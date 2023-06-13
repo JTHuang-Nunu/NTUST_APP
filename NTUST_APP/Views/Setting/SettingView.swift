@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SettingView: View {
+    @AppStorage("UseFaceID") var UseFaceID: Bool = false
     var body: some View {
         NavigationStack{
             settingForm
@@ -19,10 +20,11 @@ struct SettingView: View {
         Form{
             // do switching language using picker
             Section(header: Text("General")){
-                Picker(selection: .constant(0), label: Text("Language")){
-                    Text("English").tag(0)
-                    Text("Chinese").tag(1)
-                }
+                
+                Toggle(isOn: $UseFaceID, label: {
+                    Text("使用FaceID解鎖")
+                })
+                
             }
         }
     }
@@ -32,4 +34,12 @@ struct SettingView_Previews: PreviewProvider {
     static var previews: some View {
         SettingView()
     }
+}
+
+class LoginSetting: ObservableObject{
+    @Published var UseFaceID: Bool = false
+    @Published var MoodleAccount: String = ""
+    @Published var MoodlePassword: String = ""
+    @Published var NTUSTAccount: String = ""
+    @Published var NTUSTPassword: String = ""
 }

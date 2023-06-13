@@ -13,7 +13,7 @@ class LoginState: ObservableObject {
 
 
 struct LoginBlock: View {
-    @State private var account: String = ""
+    @State public var account: String = ""
     @State private var password: String = ""
     @EnvironmentObject var loginState: LoginState
     

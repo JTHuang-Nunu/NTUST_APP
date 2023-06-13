@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import LocalAuthentication
+
 class AlertInfo: Identifiable {
     let id = UUID()
     let title: String
@@ -21,7 +23,8 @@ struct MoodleLoginView: View {
     @State private var loginSuccess: Bool = false
     @StateObject private var loginState = LoginState()
     @State private var showAlert: AlertInfo? = nil
-    
+    @AppStorage("UseFaceID") var useFaceID: Bool = false
+    @AppStorage("MoodleAccount") var moodleAccount: String = ""
     
     var body: some View {
         VStack {
@@ -64,39 +67,76 @@ struct MoodleLoginView: View {
     
     var loginField: some View {
         
-        LoginBlock{ account, password in
-            loginState.isTryingLogin = true
-            print("Login Button Pressed")
-            //收起小鍵盤
-            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-            
-            if account.isEmpty || password.isEmpty
-            {
-                showAlert = loginFailedAlert
-                loginState.isTryingLogin = false
-                return
+        LoginBlock(account: moodleAccount){ account, password in
+            tryLogin(account: account, password: password)
+        }
+        .environmentObject(loginState)
+        .onAppear{
+            if useFaceID{
+                authenticate()
             }
-            
-            
-            MoodleManager.shared.Login(Account: account, Password: password) { success in
-                if success {
+        }
+    }
+    var loginFailedAlert: AlertInfo{
+        AlertInfo(title: "登入失敗", message: "請檢查帳號密碼")
+    }
+    private func tryLogin(account: String, password: String){
+        loginState.isTryingLogin = true
+        moodleAccount = account
+        print("Login Button Pressed")
+        //收起小鍵盤
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        
+        if account.isEmpty || password.isEmpty
+        {
+            showAlert = loginFailedAlert
+            loginState.isTryingLogin = false
+            return
+        }
+        
+        
+        MoodleManager.shared.Login(Account: account, Password: password) { success in
+            if success {
+                withAnimation{
                     loginSuccess = true
                     loginState.isTryingLogin = false
+                    KeychainService.shared.save(password, for: account)
+                    moodleAccount = account
                     DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
                         dismiss()
                     }
-                } else {
-                    // 登入失敗
-                    showAlert = loginFailedAlert
+                    
                 }
                 
-                
+            } else {
+                // 登入失敗
+                showAlert = loginFailedAlert
+                loginState.isTryingLogin = false
+            }
+            
+            
+        }
+    }
+    private func authenticate(){
+        let context = LAContext()
+        var error: NSError?
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error){
+            let reason = "使用生物辨識登入"
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
+                DispatchQueue.main.async {
+                    if success{
+                        let password = KeychainService.shared.retrivePassword(for: moodleAccount)
+                        if let password = password{
+                            tryLogin(account: moodleAccount, password: password)
+                        }
+                    }
+                }
             }
         }
-        .environmentObject(loginState)
-    }
-    var loginFailedAlert: AlertInfo{
-        AlertInfo(title: "登入失败", message: "請檢查帳號密碼")
+        else{
+            print("無法使用生物辨識")
+        }
+    
     }
     
 }

@@ -36,6 +36,7 @@
 		E78A810C2A27230B005497F1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78A810B2A27230B005497F1 /* HomeView.swift */; };
 		E78F28872A33486200E32171 /* YoubikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78F28862A33486200E32171 /* YoubikeView.swift */; };
 		E7C443192A2737FC00E9040F /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C443182A2737FC00E9040F /* Card.swift */; };
+		E7F60EE12A3826DA006464E6 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F60EE02A3826DA006464E6 /* KeyChain.swift */; };
 		E7FE29052A2A598A0057A1A1 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FE29042A2A598A0057A1A1 /* NavigationBar.swift */; };
 		E7FE290A2A2A640D0057A1A1 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FE29092A2A640D0057A1A1 /* SettingView.swift */; };
 /* End PBXBuildFile section */
@@ -90,6 +91,7 @@
 		E78A810B2A27230B005497F1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E78F28862A33486200E32171 /* YoubikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoubikeView.swift; sourceTree = "<group>"; };
 		E7C443182A2737FC00E9040F /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		E7F60EE02A3826DA006464E6 /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
 		E7FE29042A2A598A0057A1A1 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		E7FE29092A2A640D0057A1A1 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -249,6 +251,7 @@
 			children = (
 				E7FE29042A2A598A0057A1A1 /* NavigationBar.swift */,
 				E777173E2A36278900A914F1 /* NeedLoginView.swift */,
+				E7F60EE02A3826DA006464E6 /* KeyChain.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				E772E5662A321815004CCCA8 /* CourseCard.swift in Sources */,
 				E77717382A36141700A914F1 /* NTUSTLoginView.swift in Sources */,
 				E772E5612A3215ED004CCCA8 /* AccountView.swift in Sources */,
+				E7F60EE12A3826DA006464E6 /* KeyChain.swift in Sources */,
 				D8CB13A92A0D2E9E00BFB673 /* NTUST_APP.xcdatamodeld in Sources */,
 				E77717342A35E8C200A914F1 /* MainView.swift in Sources */,
 				BFF46ACF2A36CBC500D1602F /* BulletinView.swift in Sources */,
@@ -588,6 +592,7 @@
 				DEVELOPMENT_TEAM = HH87C4ZJG2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "We need use FaceID to login";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -618,6 +623,7 @@
 				DEVELOPMENT_TEAM = HH87C4ZJG2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "We need use FaceID to login";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
