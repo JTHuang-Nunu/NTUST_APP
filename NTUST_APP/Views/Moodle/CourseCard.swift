@@ -13,7 +13,7 @@ struct CourseCard: View {
     var body: some View {
 
         VStack(alignment: .leading) {
-            let chname = parseFullName(fullName: courseInfo.fullname)
+            let chname = courseInfo.shortname
             Text(chname)
                 .font(.title2)
                 .fontWeight(.bold)
@@ -62,4 +62,4 @@ struct CourseCard_Previews: PreviewProvider {
         CourseCard(courseInfo: test_course)
     }
 }
-let test_course = Courses(course_category: "", course_id: "0", department: "資工系", enddate: "", fullname: "111.2【資工系】CS3010301 資料庫系統 Database Systems", hasprogress: false, id: 1234, progress: 1, startdate: "", viewurl: "")
+let test_course = Courses(course_category: "", course_id: "0", department: "資工系", enddate: "", fullname: "111.2【資工系】CS3010301 資料庫系統 Database Systems", hasprogress: false, id: 1234, progress: 1, startdate: "", viewurl: "", shortname: "")

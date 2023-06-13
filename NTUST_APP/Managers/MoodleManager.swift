@@ -31,6 +31,7 @@ struct Courses: Codable {
     var progress: Int
     var startdate: String
     var viewurl: String
+    var shortname: String
 }
 
 //單一課程資訊回傳的 json
