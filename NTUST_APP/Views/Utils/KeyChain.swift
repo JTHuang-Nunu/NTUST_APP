@@ -22,7 +22,7 @@ class KeychainService {
         let query: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
                                     kSecAttrAccount as String: account,
                                     kSecMatchLimit as String: kSecMatchLimitOne,
-                                    kSecReturnData as String: kCFBooleanTrue]
+                                    kSecReturnData as String: kCFBooleanTrue ?? false]
         
         
         var retrivedData: AnyObject? = nil

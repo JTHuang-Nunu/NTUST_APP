@@ -65,36 +65,85 @@ struct SectionRowView: View {
         "core" : "arrow.down.doc",
         "assign" : "square.and.pencil",
     ]
+    
+    @State private var isDownloading = false
+    @State private var showAlert = false
+    @State private var alertMessage = ""
+    @State private var fileURL: URL?
+    @State private var isShowingPreview = false
+    
     var body: some View {
-        HStack {
-            Image(systemName: GetIcon())
-                .font(.title3)
-                .frame(width: 25, height: 25)
-            
-            Text(section.name)
-                .font(.title3)
-            
-            Spacer()
-            
-            Button(action: {
-                // Handle button action
-            }) {
-                Text("Open")
+        ZStack {
+            HStack {
+                Image(systemName: GetIcon())
                     .font(.title3)
-                    .foregroundColor(.blue)
+                
+                Text(section.name)
+                    .font(.title3)
+                
+                Spacer()
+                
+                Button(action: {
+                    print(section.icon_url)
+                    if section.icon_url.contains("pdf") {
+                        self.isDownloading = true
+                        MoodleManager.shared.GetCoursePageResourceFile(section.url) { (success, url) in
+                            self.isDownloading = false
+                            if success {
+                                DispatchQueue.main.async {
+                                    print("文件成功下载！")
+                                    self.fileURL = url
+                                    if let url = self.fileURL {
+                                        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                                           let window = scene.windows.first {
+                                            let viewController = UIHostingController(rootView: DocumentPreview(url: url))
+                                            let navigationController = UINavigationController(rootViewController: viewController)
+                                            window.rootViewController?.present(navigationController, animated: true)
+                                        }
+                                    }
+                                }
+                            } else {
+                                DispatchQueue.main.async {
+                                    self.showAlert = true
+                                    self.alertMessage = "文件下载失败： \(String(describing: url))"
+                                }
+                            }
+                        }
+                    } else {
+                        self.showAlert = true
+                        self.alertMessage = "我們現在不提供這個服務"
+                    }
+                }) {
+                    Text("Open")
+                        .font(.title3)
+                        .foregroundColor(.blue)
+                }.disabled(isDownloading)
+            }
+            .blur(radius: isDownloading ? 3 : 0)
+            .alert(isPresented: $showAlert) {
+                Alert(title: Text("錯誤"), message: Text(alertMessage), dismissButton: .default(Text("好")))
+            }
+            
+            if isDownloading {
+                ProgressView()
+                    .scaleEffect(2)
+                    .progressViewStyle(CircularProgressViewStyle(tint: .blue))
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(Color.black.opacity(0.45))
             }
         }
     }
-    func GetIcon() -> String{
+    
+    func GetIcon() -> String {
         for (key, value) in StrIconMap {
             if section.icon_url.contains(key) {
                 return value
             }
         }
         return "square.and.pencil"
-    
     }
 }
+
 
 
 struct SectionTabView_Previews: PreviewProvider {

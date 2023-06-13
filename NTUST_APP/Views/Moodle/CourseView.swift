@@ -31,12 +31,12 @@ struct CourseView: View {
         .task{
             loadCoursePage()
         }
-        .navigationTitle(parseFullName(fullName: courseInfo.fullname))
+        .navigationTitle(courseInfo.shortname)
     
     }
     var title: some View{
         VStack{
-            Text(parseFullName(fullName: courseInfo.fullname))
+            Text(courseInfo.shortname)
                 .font(.title)
                 .fontWeight(.bold)
                 .padding()

@@ -31,6 +31,7 @@ struct Courses: Codable {
     var progress: Int
     var startdate: String
     var viewurl: String
+    var shortname: String
 }
 
 //單一課程資訊回傳的 json
@@ -304,7 +305,7 @@ class MoodleManager: ObservableObject {
         //request method
         request.httpMethod = "POST"
         
-        //request header`
+        //request header
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         //POST parameter
@@ -371,9 +372,156 @@ class MoodleManager: ObservableObject {
     private func DebugPrint(_ func_name:String,_ message: String){
         print("[Moodle Manager] (\(func_name)): \(message)")
     }
+
+    /*
+     func : 取的課程頁面的資料
+     parameter : Url
+     return : Bool(是否取的成功), String(檔案的路徑)
+     */
+    public func GetCoursePageResourceFile(_ download_url:String, completion: @escaping (Bool, URL?) -> Void) {
+        //取得 下載檔案 的 api url
+        let url = URL(string: "http://\(host_ip)/api/get_page_resouce_file")!
+        
+        //建立url request
+        var request = URLRequest(url: url)
+        
+        //request method
+        request.httpMethod = "POST"
+        
+        //request header
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        //POST parameter
+        //{ "userid" : 0, "url" : "https://moodle2.ntust.edu.tw/mod/resource/view.php?id=87472"}
+        let parameters: [String: Any] = [
+            "userid": userid,
+            "url": download_url
+        ]
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+        } catch let error {
+            print(error.localizedDescription)
+            completion(false, nil)
+        }
+        
+        let session = URLSession.shared
+        
+        let task = session.dataTask(with: request) { (data, response, error) in
+            guard let data = data, error == nil else {
+                print("下載文件出現錯誤: \(error?.localizedDescription ?? "Unknown error")")
+                completion(false, nil)
+                return
+            }
+            
+            var filename = "default_filename.pdf" //預設文件名稱
+            //從回應取得文件名稱
+            if let httpResponse = response as? HTTPURLResponse {
+                if let contentDisposition = httpResponse.allHeaderFields["Content-Disposition"] as? String {
+                    let components = contentDisposition.split(separator: "=")
+                    if components.count > 1 {
+                        filename = String(components[1])
+                    }
+                }
+            }
+            
+            // 將文件存在本地端
+            let saveURL = self.getSaveURL(filename: filename) // 用从服务器接收的文件名保存文件
+            do {
+                try data.write(to: saveURL)
+                print("位置: \(saveURL)")
+                
+                completion(true, saveURL)
+            } catch {
+                print("檔案存擋時發生錯誤: \(error.localizedDescription)")
+                completion(false, nil)
+            }
+        }
+        
+        task.resume()
+        
+    }
     
+    func downloadFileUsingPOST() {
+        //取得 下載檔案 的 api url
+        let url = URL(string: "http://\(host_ip)/api/get_page_resouce_file")!
+        
+        //建立url request
+        var request = URLRequest(url: url)
+        
+        //request method
+        request.httpMethod = "POST"
+        
+        //request header
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        //POST parameter
+        //{ "userid" : 0, "url" : "https://moodle2.ntust.edu.tw/mod/resource/view.php?id=87472"}
+        let parameters: [String: Any] = [
+            "userid": userid,
+            "url": "https://moodle2.ntust.edu.tw/mod/resource/view.php?id=87472"
+        ]
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        
+        let session = URLSession.shared
+        
+        let task = session.dataTask(with: request) { (data, response, error) in
+            guard let data = data, error == nil else {
+                print("下载文件时出现错误: \(error?.localizedDescription ?? "Unknown error")")
+                return
+            }
+            
+            var filename = "default_filename.pdf" // default filename in case we can't get it from headers
+            if let httpResponse = response as? HTTPURLResponse {
+                if let contentDisposition = httpResponse.allHeaderFields["Content-Disposition"] as? String {
+                    let components = contentDisposition.split(separator: "=")
+                    if components.count > 1 {
+                        filename = String(components[1]) // Get filename from headers
+                    }
+                }
+            }
+            
+            // 将文件数据保存到本地
+            let saveURL = self.getSaveURL(filename: filename) // 用从服务器接收的文件名保存文件
+            do {
+                try data.write(to: saveURL)
+                print("文件下载成功！")
+                print(filename)
+            } catch {
+                print("保存文件时出现错误: \(error.localizedDescription)")
+            }
+        }
+        
+        task.resume()
+    }
+
+    // 生成文件的路徑
+    private func getSaveURL(filename: String) -> URL {
+        let fileManager = FileManager.default
+        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let saveURL = documentsURL.appendingPathComponent(filename)
+        return saveURL
+    }
     
     public func Test() {
+        print("test")
+        let downloadURL = "https://moodle2.ntust.edu.tw/mod/resource/view.php?id=87472"
+
+        GetCoursePageResourceFile(downloadURL) { (success, message) in
+            if success {
+                print("文件成功下载！")
+            } else {
+                print("文件下载失败： \(message)")
+            }
+        }
+
+        
         // UserDefaults.standard.set(calendarData, forKey: "calendarData")
         
 //        self.GetCourseList() { result, data in
@@ -391,21 +539,21 @@ class MoodleManager: ObservableObject {
 //                }
 //            }
 //        }
-        self.GetCouesePage(id: 4932) { result, data  in
-            print(result)
-            if let data = data {
-                for week in data.week_list {
-                    print("Week: \(week.week)")
-                    
-                    for section in week.section {
-                        print("Section Name: \(section.name)")
-                        print("Icon URL: \(section.icon_url)")
-                        print("URL: \(section.url)")
-                        print("---")
-                    }
-                }
-            }
-        }
+//        self.GetCouesePage(id: 4932) { result, data  in
+//            print(result)
+//            if let data = data {
+//                for week in data.week_list {
+//                    print("Week: \(week.week)")
+//
+//                    for section in week.section {
+//                        print("Section Name: \(section.name)")
+//                        print("Icon URL: \(section.icon_url)")
+//                        print("URL: \(section.url)")
+//                        print("---")
+//                    }
+//                }
+//            }
+//        }
 //        self.GetCalendar(year: 2023, month: 5) { result, data in
 //            print(result)
 //            if let data = data {

@@ -10,6 +10,7 @@
 		BFB803B62A334C3C0011F454 /* YouBikeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB803B52A334C3C0011F454 /* YouBikeManager.swift */; };
 		BFB803B92A34BE610011F454 /* ScoreListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB803B82A34BE610011F454 /* ScoreListView.swift */; };
 		BFB803BB2A355DB20011F454 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB803BA2A355DB20011F454 /* MapView.swift */; };
+		BFDF45DD2A38AC0100C17477 /* DocumentPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDF45DC2A38AC0100C17477 /* DocumentPreview.swift */; };
 		BFF46ACF2A36CBC500D1602F /* BulletinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF46ACE2A36CBC500D1602F /* BulletinView.swift */; };
 		D8CB139D2A0D2E9B00BFB673 /* NTUST_APP.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB139C2A0D2E9B00BFB673 /* NTUST_APP.swift */; };
 		D8CB139F2A0D2E9B00BFB673 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CB139E2A0D2E9B00BFB673 /* ContentView.swift */; };
@@ -63,6 +64,7 @@
 		BFB803B52A334C3C0011F454 /* YouBikeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouBikeManager.swift; sourceTree = "<group>"; };
 		BFB803B82A34BE610011F454 /* ScoreListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreListView.swift; sourceTree = "<group>"; };
 		BFB803BA2A355DB20011F454 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		BFDF45DC2A38AC0100C17477 /* DocumentPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPreview.swift; sourceTree = "<group>"; };
 		BFF46ACE2A36CBC500D1602F /* BulletinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinView.swift; sourceTree = "<group>"; };
 		D8CB13992A0D2E9B00BFB673 /* NTUST_APP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NTUST_APP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CB139C2A0D2E9B00BFB673 /* NTUST_APP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NTUST_APP.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 				E7FE29042A2A598A0057A1A1 /* NavigationBar.swift */,
 				E777173E2A36278900A914F1 /* NeedLoginView.swift */,
 				E7F60EE02A3826DA006464E6 /* KeyChain.swift */,
+				BFDF45DC2A38AC0100C17477 /* DocumentPreview.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				BFB803BB2A355DB20011F454 /* MapView.swift in Sources */,
 				E777173A2A36168700A914F1 /* LoginBlock.swift in Sources */,
 				E7C443192A2737FC00E9040F /* Card.swift in Sources */,
+				BFDF45DD2A38AC0100C17477 /* DocumentPreview.swift in Sources */,
 				D8CB13A62A0D2E9E00BFB673 /* Persistence.swift in Sources */,
 				E7FE29052A2A598A0057A1A1 /* NavigationBar.swift in Sources */,
 				E772E56A2A323A54004CCCA8 /* SectionTabView.swift in Sources */,

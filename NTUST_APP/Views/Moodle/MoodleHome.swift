@@ -60,7 +60,7 @@ struct MoodleHome: View {
         MoodleManager.shared.GetCourseList{ success, courses in
             if success{
                 self.courseList = courses
-                print(self.courseList?.count)
+                print(self.courseList?.count ?? 0)
             }else{
                 logger.error("GetCourseList failed")
                 self.courseList = nil
@@ -80,8 +80,8 @@ struct MoodleHome_Previews: PreviewProvider {
 }
 
 let test_course_list = [
-    Courses(course_category: "", course_id: "0", department: "資工系", enddate: "", fullname: "編譯器設計", hasprogress: false, id: 1234, progress: 1, startdate: "", viewurl: ""),
-    Courses(course_category: "", course_id: "2", department: "資工系", enddate: "", fullname: "資料庫系統", hasprogress: false, id: 1235, progress: 1, startdate: "", viewurl: ""),
-    Courses(course_category: "", course_id: "3", department: "資工系", enddate: "", fullname: "IOS程式設計", hasprogress: false, id: 1236, progress: 1, startdate: "", viewurl: ""),
+    Courses(course_category: "", course_id: "0", department: "資工系", enddate: "", fullname: "編譯器設計", hasprogress: false, id: 1234, progress: 1, startdate: "", viewurl: "", shortname:""),
+    Courses(course_category: "", course_id: "2", department: "資工系", enddate: "", fullname: "資料庫系統", hasprogress: false, id: 1235, progress: 1, startdate: "", viewurl: "", shortname:""),
+    Courses(course_category: "", course_id: "3", department: "資工系", enddate: "", fullname: "IOS程式設計", hasprogress: false, id: 1236, progress: 1, startdate: "", viewurl: "", shortname:""),
     
 ]
