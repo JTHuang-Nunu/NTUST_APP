@@ -37,6 +37,7 @@
 		E78F28872A33486200E32171 /* YoubikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78F28862A33486200E32171 /* YoubikeView.swift */; };
 		E7C443192A2737FC00E9040F /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C443182A2737FC00E9040F /* Card.swift */; };
 		E7F60EE12A3826DA006464E6 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F60EE02A3826DA006464E6 /* KeyChain.swift */; };
+		E7F60EE32A385937006464E6 /* GeneralTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F60EE22A385937006464E6 /* GeneralTabView.swift */; };
 		E7FE29052A2A598A0057A1A1 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FE29042A2A598A0057A1A1 /* NavigationBar.swift */; };
 		E7FE290A2A2A640D0057A1A1 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FE29092A2A640D0057A1A1 /* SettingView.swift */; };
 /* End PBXBuildFile section */
@@ -92,6 +93,7 @@
 		E78F28862A33486200E32171 /* YoubikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoubikeView.swift; sourceTree = "<group>"; };
 		E7C443182A2737FC00E9040F /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		E7F60EE02A3826DA006464E6 /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
+		E7F60EE22A385937006464E6 /* GeneralTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTabView.swift; sourceTree = "<group>"; };
 		E7FE29042A2A598A0057A1A1 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		E7FE29092A2A640D0057A1A1 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -200,6 +202,7 @@
 				E772E5652A321815004CCCA8 /* CourseCard.swift */,
 				E772E5672A3224A6004CCCA8 /* CourseView.swift */,
 				E772E5692A323A54004CCCA8 /* SectionTabView.swift */,
+				E7F60EE22A385937006464E6 /* GeneralTabView.swift */,
 			);
 			path = Moodle;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 				E772E5662A321815004CCCA8 /* CourseCard.swift in Sources */,
 				E77717382A36141700A914F1 /* NTUSTLoginView.swift in Sources */,
 				E772E5612A3215ED004CCCA8 /* AccountView.swift in Sources */,
+				E7F60EE32A385937006464E6 /* GeneralTabView.swift in Sources */,
 				E7F60EE12A3826DA006464E6 /* KeyChain.swift in Sources */,
 				D8CB13A92A0D2E9E00BFB673 /* NTUST_APP.xcdatamodeld in Sources */,
 				E77717342A35E8C200A914F1 /* MainView.swift in Sources */,

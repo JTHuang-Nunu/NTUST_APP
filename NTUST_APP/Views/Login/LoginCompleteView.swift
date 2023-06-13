@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoginCompleteView: View {
     var body: some View {
-        Text("登入成功!!")
+        Text("登入成功!")
             .font(.system(size: 30))
             .bold()
         

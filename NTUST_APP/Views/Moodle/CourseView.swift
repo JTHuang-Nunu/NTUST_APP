@@ -11,7 +11,7 @@ import os
 struct CourseView: View {
     
     let courseInfo: Courses
-    let tabItems = ["課程", "公告", "成績"]
+    let tabItems = ["課程", "一般"]
     @State var coursePage: CoursePage? = nil
     
     @State var selectedTab = 0
@@ -46,21 +46,6 @@ struct CourseView: View {
                 .padding()
         }
     }
-    
-    func parseFullName(fullName: String) -> String {
-        let pattern = #"【.+】([A-Za-z0-9]+)"#
-        
-        if let range = fullName.range(of: pattern, options: .regularExpression) {
-            var name = String(fullName[range.upperBound...])
-            name = name.replacingOccurrences(of: "[A-Za-z0-9]+", with: "", options: .regularExpression)
-            name = name.replacingOccurrences(of: " ", with: "")
-            name = name.replacingOccurrences(of: "(", with: " ")
-            name = name.replacingOccurrences(of: ")", with: " ")
-            return name
-        }
-        
-        return ""
-    }
 
     var tabContent: some View{
         Group {
@@ -70,9 +55,7 @@ struct CourseView: View {
                 case 0:
                     SectionTabView(coursePage: coursePage)
                 case 1:
-                    Text("公告")
-                case 2:
-                    Text("成績")
+                    GeneralTabView(coursePage: coursePage)
                 default:
                     EmptyView()
                 }
@@ -131,4 +114,26 @@ struct CourseView_Previews: PreviewProvider {
 
         }
     }
+}
+func parseFullName(fullName: String) -> String {
+    let pattern = #"【.+】([A-Za-z0-9]+)"#
+    
+    if let range = fullName.range(of: pattern, options: .regularExpression) {
+        var name = String(fullName[range.upperBound...])
+        name = name.replacingOccurrences(of: " ", with: "")
+        name = name.replacingOccurrences(of: "(", with: " ")
+        name = name.replacingOccurrences(of: ")", with: " ")
+        name = name.replacingOccurrences(of: "（", with: " ")
+        name = name.replacingOccurrences(of: "）", with: " ")
+        // get all the words before english character
+        // for example, "IOS程式設計 iosPrograming" output "IOS程式設計"
+        let pattern = #"[A-Za-z]+"#
+        if let range = name.range(of: pattern, options: .regularExpression) {
+            name = String(name[..<range.lowerBound])
+        }
+        
+        return name
+    }
+    
+    return ""
 }

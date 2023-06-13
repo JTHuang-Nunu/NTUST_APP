@@ -13,10 +13,11 @@ struct SectionTabView: View {
     var body: some View {
         List {
             Group {
-                ForEach(coursePage.week_list, id: \.week) { week in
-                    WeekView(week: week)
-                        .padding()
-                        .cornerRadius(10)
+                ForEach(0 ..< coursePage.week_list.count) { i in
+                    if coursePage.week_list[i].week != "一般" {
+                        WeekView(week: coursePage.week_list[i], weekNumber: i)
+                            .cornerRadius(10)
+                    }
                 }
             }
         }
@@ -25,17 +26,34 @@ struct SectionTabView: View {
 
 struct WeekView: View {
     let week: CourseWeek
-    
+    var weekNumber: Int? = nil
     var body: some View {
-        Section {
-            Text(week.week)
-                .font(.title2)
-                .fontWeight(.bold)
-            
-            ForEach(week.section, id: \.name) { section in
-                SectionRowView(section: section)
+        if weekNumber != nil{
+            Section(header: Text("第\(weekNumber!)週")) {
+                Text(week.week)
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .padding()
+                
+                ForEach(week.section, id: \.name) { section in
+                    SectionRowView(section: section)
+                        .padding()
+                }
+            }
+        }else{
+            Section {
+                Text(week.week)
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .padding()
+                
+                ForEach(week.section, id: \.name) { section in
+                    SectionRowView(section: section)
+                        .padding()
+                }
             }
         }
+        
     }
 }
 
@@ -51,6 +69,7 @@ struct SectionRowView: View {
         HStack {
             Image(systemName: GetIcon())
                 .font(.title3)
+                .frame(width: 25, height: 25)
             
             Text(section.name)
                 .font(.title3)
