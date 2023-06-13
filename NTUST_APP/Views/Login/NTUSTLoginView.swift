@@ -63,7 +63,10 @@ struct NTUSTLoginView: View {
         .environmentObject(loginState)
         .onAppear{
             if useFaceID{
-                authenticate()
+                let password = KeychainService.shared.retrivePassword(for: NTUSTAccount)
+                if password != nil{
+                    authenticate()
+                }
             }
         }
     }
