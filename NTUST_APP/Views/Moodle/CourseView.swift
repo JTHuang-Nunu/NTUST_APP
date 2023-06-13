@@ -20,9 +20,6 @@ struct CourseView: View {
     
     var body: some View {
         VStack{
-            VStack {
-                title
-            }
             if coursePage != nil{
                 tab
                 tabContent
@@ -34,6 +31,7 @@ struct CourseView: View {
         .task{
             loadCoursePage()
         }
+        .navigationTitle(parseFullName(fullName: courseInfo.fullname))
     
     }
     var title: some View{
@@ -90,7 +88,10 @@ struct CourseView: View {
         HStack(spacing: 0) {
             ForEach(tabItems, id: \.self) { item in
                 Button(action: {
-                    selectedTab = tabItems.firstIndex(of: item)!
+                    withAnimation{
+                        selectedTab = tabItems.firstIndex(of: item)!
+                    }
+                    
                 }) {
                     Text(item)
                         .font(.title2)

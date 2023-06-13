@@ -229,7 +229,7 @@ class MoodleManager: ObservableObject {
      */
     public func GetCouesePage(id:Int, completion: @escaping (Bool, CoursePage?) -> Void){
         //取得 CoursePage 的 api url
-        let url = URL(string: "http://\(host_ip)/api/get_coursePage")!
+        let url = URL(string: "http://\(host_ip)/api/get_course_page")!
         
         //建立url request
         var request = URLRequest(url: url)
