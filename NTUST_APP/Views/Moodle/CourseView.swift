@@ -47,20 +47,20 @@ struct CourseView: View {
         }
     }
     
-    func parseFullName(fullName: String) -> String {
-        let pattern = #"【.+】([A-Za-z0-9]+)"#
-        
-        if let range = fullName.range(of: pattern, options: .regularExpression) {
-            var name = String(fullName[range.upperBound...])
-            name = name.replacingOccurrences(of: "[A-Za-z0-9]+", with: "", options: .regularExpression)
-            name = name.replacingOccurrences(of: " ", with: "")
-            name = name.replacingOccurrences(of: "(", with: " ")
-            name = name.replacingOccurrences(of: ")", with: " ")
-            return name
-        }
-        
-        return ""
-    }
+//    func parseFullName(fullName: String) -> String {
+//        let pattern = #"【.+】([A-Za-z0-9]+)"#
+//
+//        if let range = fullName.range(of: pattern, options: .regularExpression) {
+//            var name = String(fullName[range.upperBound...])
+//            name = name.replacingOccurrences(of: "[A-Za-z0-9]+", with: "", options: .regularExpression)
+//            name = name.replacingOccurrences(of: " ", with: "")
+//            name = name.replacingOccurrences(of: "(", with: " ")
+//            name = name.replacingOccurrences(of: ")", with: " ")
+//            return name
+//        }
+//
+//        return ""
+//    }
 
     var tabContent: some View{
         Group {

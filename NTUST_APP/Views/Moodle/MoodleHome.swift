@@ -60,7 +60,7 @@ struct MoodleHome: View {
         MoodleManager.shared.GetCourseList{ success, courses in
             if success{
                 self.courseList = courses
-                print(self.courseList?.count)
+                print(self.courseList?.count ?? 0)
             }else{
                 logger.error("GetCourseList failed")
                 self.courseList = nil

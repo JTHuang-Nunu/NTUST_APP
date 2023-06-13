@@ -13,7 +13,6 @@ struct SettingView: View {
         NavigationStack{
             settingForm
                 .navigationBarTitle("Setting")
-        
         }
     }
     var settingForm: some View{
