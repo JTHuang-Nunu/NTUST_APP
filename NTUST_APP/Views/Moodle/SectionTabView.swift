@@ -11,12 +11,11 @@ struct SectionTabView: View {
     var coursePage: CoursePage
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: 20) {
+        List {
+            Group {
                 ForEach(coursePage.week_list, id: \.week) { week in
                     WeekView(week: week)
                         .padding()
-                        .background(Color.blue)
                         .cornerRadius(10)
                 }
             }
@@ -28,17 +27,13 @@ struct WeekView: View {
     let week: CourseWeek
     
     var body: some View {
-        VStack {
+        Section {
             Text(week.week)
-                .font(.title)
+                .font(.title2)
                 .fontWeight(.bold)
-                .foregroundColor(.white)
             
             ForEach(week.section, id: \.name) { section in
                 SectionRowView(section: section)
-                    .padding()
-                    .background(Color.white)
-                    .cornerRadius(5)
             }
         }
     }
@@ -50,10 +45,10 @@ struct SectionRowView: View {
     var body: some View {
         HStack {
             Image(systemName: "book")
-                .font(.title)
+                .font(.title3)
             
             Text(section.name)
-                .font(.headline)
+                .font(.title3)
             
             Spacer()
             
@@ -61,7 +56,7 @@ struct SectionRowView: View {
                 // Handle button action
             }) {
                 Text("Open")
-                    .font(.headline)
+                    .font(.title3)
                     .foregroundColor(.blue)
             }
         }

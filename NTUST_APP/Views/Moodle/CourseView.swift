@@ -83,6 +83,7 @@ struct CourseView: View {
             
             }
         }
+        .frame(minWidth: 100, minHeight: 100)
     }
     
     var tab: some View {
