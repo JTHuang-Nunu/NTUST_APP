@@ -71,7 +71,7 @@ struct YoubikeView: View {
                 ScrollView {
                     LazyVStack(spacing: 20) {
                         ForEach(viewModel.bike_stations, id: \.sno) { bikeStation in
-                            BikeStationInfoView(bikeStation: bikeStation)
+                            BikeStationInfoView(bikeStation: bikeStation, imageName: bikeStation.sna.replacingOccurrences(of: "YouBike2.0_", with: "").appending("_圖片"))
                                 .padding(10)
                         }
                     }
@@ -101,6 +101,7 @@ struct YoubikeView: View {
 
 struct BikeStationInfoView: View {
     let bikeStation: BikeStation
+    let imageName: String
     @State private var isSheetPresented = false // Add this line
     
     var body: some View {
@@ -128,7 +129,7 @@ struct BikeStationInfoView: View {
         .frame(width: 300, height: 200)
         .background(
             ZStack {
-                Image("youbike_台科側門")
+                Image(imageName)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                 RoundedRectangle(cornerRadius: 10)
