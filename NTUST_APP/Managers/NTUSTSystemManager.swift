@@ -54,7 +54,7 @@ struct News: Codable {
 
 
 class NTUSTSystemManager: ObservableObject{
-    var host_ip = "169.254.76.100:8004"
+    var host_ip = "192.168.137.137:5000"
     var userid: Int = 0
     @Published var login_status = false
     
